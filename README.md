@@ -147,6 +147,3 @@ Future goals:
 <div align="center">
   <em>“angin bertiup merendahkannya, langit menunduk di hadapannya”</em>
 </div>
-# Rakhan-Atthaya
-# rakhan17
-# rakhan17
