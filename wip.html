@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Work in Progress | Rakhan Ataya</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg width='2521' height='2521' viewBox='0 0 2521 2521' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2521 0H0V2521L1260.5 1260.5L2521 0Z' fill='%23CCFF00'/%3E%3Cpath d='M2521 2521V1260.5H1260.5V2521H2521Z' fill='%23CCFF00'/%3E%3C/svg%3E">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#080808',
+                        surface: '#121212',
+                        accent: '#CCFF00', 
+                        secondary: '#888888'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080808;
+            color: #f1f1f1;
+        }
+
+        /* Subtle Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.03'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Smooth fade animation */
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animate-fade-up {
+            animation: fadeUp 0.8s ease-out forwards;
+        }
+
+        .delay-100 { animation-delay: 0.1s; }
+        .delay-200 { animation-delay: 0.2s; }
+        .delay-300 { animation-delay: 0.3s; }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-black min-h-screen flex flex-col">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 left-0 w-full px-6 py-6 flex justify-between items-center z-40 opacity-0 animate-fade-up">
+        <a href="index.html" class="w-10 h-10 hover:scale-110 transition-transform duration-300">
+            <svg width="100%" height="100%" viewBox="0 0 2521 2521" fill="none" xmlns="http://www.w3.org/2000/svg">
+                <g clip-path="url(#clip0_95_13)">
+                    <path d="M2521 0H0V2521L1260.5 1260.5L2521 0Z" fill="#CCFF00"/>
+                    <path d="M2521 2521V1260.5H1260.5V2521H2521Z" fill="#CCFF00"/>
+                </g>
+                <defs>
+                    <clipPath id="clip0_95_13"><rect width="2521" height="2521" fill="white"/></clipPath>
+                </defs>
+            </svg>
+        </a>
+        <a href="index.html#works" class="text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition duration-300">
+            Back
+        </a>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-1 flex items-center justify-center px-6">
+        <div class="text-center max-w-2xl mx-auto">
+            
+            <!-- Simple Indicator -->
+            <div class="mb-12 opacity-0 animate-fade-up delay-100">
+                <div class="inline-flex items-center gap-3 px-5 py-3 border border-white/10 rounded-full bg-surface/50">
+                    <div class="w-2 h-2 bg-accent rounded-full animate-pulse"></div>
+                    <span class="text-xs font-bold uppercase tracking-widest text-gray-300">In Development</span>
+                </div>
+            </div>
+
+            <!-- Title -->
+            <h1 class="font-display text-5xl md:text-7xl font-bold mb-6 opacity-0 animate-fade-up delay-200">
+                Coming <span class="text-accent italic">Soon</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="text-secondary text-lg md:text-xl mb-12 leading-relaxed opacity-0 animate-fade-up delay-300">
+                This project is currently being crafted. Stay tuned for something worth the wait.
+            </p>
+
+            <!-- Minimal Progress -->
+            <div class="max-w-xs mx-auto mb-12 opacity-0 animate-fade-up delay-300">
+                <div class="h-[2px] bg-white/10 rounded-full overflow-hidden">
+                    <div class="h-full w-2/3 bg-accent rounded-full"></div>
+                </div>
+            </div>
+
+            <!-- Single Action -->
+            <div class="opacity-0 animate-fade-up delay-300">
+                <a href="index.html" class="inline-flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition duration-300 group">
+                    <span>Return Home</span>
+                    <i class="fas fa-arrow-right text-xs group-hover:translate-x-1 transition-transform duration-300"></i>
+                </a>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Minimal Footer -->
+    <footer class="px-6 py-6 opacity-0 animate-fade-up delay-300">
+        <div class="max-w-6xl mx-auto flex justify-center gap-8 text-sm">
+            <a href="https://github.com/rakhan17" class="text-gray-500 hover:text-accent transition duration-300"><i class="fab fa-github"></i></a>
+            <a href="https://www.linkedin.com/in/rakhan-ataya-70631a334/" class="text-gray-500 hover:text-accent transition duration-300"><i class="fab fa-linkedin"></i></a>
+        </div>
+    </footer>
+
+</body>
+</html>

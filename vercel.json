@@ -1,0 +1,16 @@
+{
+  "rewrites": [
+    {
+      "source": "/p/:id",
+      "destination": "/wip.html"
+    }
+  ],
+  "redirects": [
+    {
+      "source": "/wip.html",
+      "has": [{ "type": "header", "key": "referer", "value": "^(?!.*yourdomain\\.vercel\\.app).*$" }],
+      "destination": "/",
+      "permanent": false
+    }
+  ]
+}

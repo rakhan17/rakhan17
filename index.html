@@ -1,0 +1,580 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rakhan Ataya | Creative Developer</title>
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,%3Csvg width='2521' height='2521' viewBox='0 0 2521 2521' fill='none' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M2521 0H0V2521L1260.5 1260.5L2521 0Z' fill='%23CCFF00'/%3E%3Cpath d='M2521 2521V1260.5H1260.5V2521H2521Z' fill='%23CCFF00'/%3E%3C/svg%3E">
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;700&family=Syne:wght@400;700;800&display=swap" rel="stylesheet">
+
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Space Grotesk', 'sans-serif'],
+                        display: ['Syne', 'sans-serif'],
+                    },
+                    colors: {
+                        bg: '#080808',
+                        surface: '#121212',
+                        accent: '#CCFF00', 
+                        secondary: '#888888'
+                    }
+                }
+            }
+        }
+    </script>
+
+    <style>
+        body {
+            background-color: #080808;
+            color: #f1f1f1;
+            overflow-x: hidden;
+        }
+
+        /* Noise Overlay */
+        .noise-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.05'/%3E%3C/svg%3E");
+            pointer-events: none;
+            z-index: 9999;
+        }
+
+        /* Marquee Text */
+        .marquee-container { overflow: hidden; white-space: nowrap; }
+        .marquee-content { display: inline-block; animation: marquee 20s linear infinite; }
+        @keyframes marquee {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Reveal Animation */
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Smooth scroll behavior */
+        html { scroll-behavior: smooth; }
+
+        /* Image Hover Effect */
+        .img-hover-zoom { transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1); }
+        .group:hover .img-hover-zoom { transform: scale(1.03); }
+    </style>
+</head>
+<body class="antialiased selection:bg-accent selection:text-black">
+
+    <div class="noise-overlay"></div>
+
+    <!-- Top Right Contact -->
+    <header class="fixed top-0 left-0 w-full px-6 py-6 flex justify-end z-40 pointer-events-none mix-blend-difference">
+        <a href="#contact" class="pointer-events-auto flex items-center gap-2 text-white hover:text-accent transition duration-300">
+            <span class="text-xs md:text-sm font-bold uppercase tracking-widest">Let's Talk</span>
+            <div class="w-10 h-10 rounded-full border border-white/20 flex items-center justify-center hover:bg-accent hover:text-black transition">
+                <i class="fas fa-arrow-right -rotate-45"></i>
+            </div>
+        </a>
+    </header>
+
+    <!-- Floating Dock -->
+    <nav class="fixed bottom-6 left-1/2 -translate-x-1/2 z-50 pointer-events-auto w-[90%] md:w-auto">
+        <div class="flex items-center justify-between md:justify-center gap-4 md:gap-8 px-6 py-3 bg-surface/90 backdrop-blur-xl border border-white/10 rounded-full shadow-[0_10px_40px_rgba(0,0,0,0.8)]">
+            <a href="#works" class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition">Works</a>
+            <a href="#mini" class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition">Mini</a>
+            
+            <!-- SVG Logo -->
+            <a href="#" class="w-8 h-8 md:w-10 md:h-10 hover:scale-110 transition-transform duration-300 mx-2">
+                <svg width="100%" height="100%" viewBox="0 0 2521 2521" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <g clip-path="url(#clip0_95_13)">
+                        <path d="M2521 0H0V2521L1260.5 1260.5L2521 0Z" fill="#CCFF00"/>
+                        <path d="M2521 2521V1260.5H1260.5V2521H2521Z" fill="#CCFF00"/>
+                    </g>
+                    <defs>
+                        <clipPath id="clip0_95_13"><rect width="2521" height="2521" fill="white"/></clipPath>
+                    </defs>
+                </svg>
+            </a>
+
+            <a href="#experience" class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition">Exp</a>
+            <a href="#about" class="text-[10px] md:text-xs font-bold uppercase tracking-widest text-gray-400 hover:text-accent transition">About</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="h-screen min-h-[600px] flex flex-col justify-center px-6 lg:px-12 relative overflow-hidden">
+        <div class="max-w-[90rem] mx-auto w-full z-10 flex flex-col justify-center h-full py-20">
+            
+            <div class="flex items-center gap-3 mb-8 reveal">
+                <div class="w-2 h-2 bg-accent rounded-full animate-pulse shrink-0"></div>
+                <p class="text-accent text-[10px] sm:text-xs md:text-sm font-bold tracking-widest uppercase">
+                    Available for Any Roles: On-site, Remote & Freelance
+                </p>
+            </div>
+            
+            <!-- SAFE & NEAT TEXT: Responsive font sizing that prevents overflow -->
+            <h1 class="font-display font-extrabold uppercase leading-[0.95] tracking-tight w-full mb-12 reveal" style="transition-delay: 100ms;">
+                <span class="block text-white" style="font-size: clamp(2.5rem, 10vw, 8rem);">CREATIVE</span>
+                <span class="block text-transparent bg-clip-text bg-gradient-to-r from-gray-500 to-white italic pr-4 w-fit" style="font-size: clamp(2.5rem, 10vw, 8rem);">DEVELOPER</span>
+            </h1>
+
+        <!-- Bottom Content -->
+            <div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-8 border-t border-white/10 pt-6 reveal" style="transition-delay: 200ms;">
+                <p class="text-secondary text-sm md:text-lg leading-relaxed max-w-lg">
+                    I'm Rakhan Ataya. Transforming code logic into immersive visual experiences. A Fullstack Developer & Designer crafting digital solutions.
+                </p>
+
+                <a href="#works" class="flex items-center gap-6 text-white hover:text-accent transition group shrink-0">
+                    <span class="font-bold uppercase tracking-widest text-sm">Scroll Down</span>
+                    <div class="w-14 h-14 rounded-full border border-white/20 flex items-center justify-center group-hover:border-accent group-hover:bg-accent/10 transition-all">
+                        <i class="fas fa-arrow-down group-hover:translate-y-1 transition-transform"></i>
+                    </div>
+                </a>
+            </div>
+        </div>
+        
+        <!-- Abstract Glow -->
+        <div class="absolute right-0 top-1/2 -translate-y-1/2 w-[300px] md:w-[600px] h-[600px] bg-accent/5 rounded-full blur-[100px] pointer-events-none -z-10"></div>
+    </section>
+
+    <!-- Marquee Banner (Positioned below hero, visible only on scroll) -->
+    <div class="py-6 bg-accent text-black border-y border-black overflow-hidden relative">
+        <div class="marquee-container font-display font-bold text-2xl md:text-3xl uppercase tracking-tighter">
+            <div class="marquee-content">
+                Frontend Dev — UI/UX Design — Backend Logic — Creative Coding — Graphic Design — Flutter — Laravel — React — 
+                Frontend Dev — UI/UX Design — Backend Logic — Creative Coding — Graphic Design — Flutter — Laravel — React — 
+            </div>
+        </div>
+    </div>
+
+    <!-- Selected Works (Massive Editorial Panels) -->
+    <section id="works" class="py-32 px-4 md:px-6">
+        <div class="max-w-[100rem] mx-auto">
+            <div class="mb-24 reveal">
+                <h2 class="font-display text-5xl md:text-7xl font-bold uppercase">Selected <br> Works <span class="text-accent">.</span></h2>
+            </div>
+
+            <!-- Project 1 -->
+            <div class="group relative mb-24 md:mb-40 reveal">
+                <div class="w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl overflow-hidden relative bg-surface border border-white/5">
+                    <img src="/krisan.png" alt="Krisan Kalindo" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-zoom">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-80 transition duration-500"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                        <div class="max-w-3xl">
+                            <span class="text-accent font-display font-bold text-xl md:text-2xl mb-2 block">01</span>
+                            <h3 class="text-4xl md:text-6xl font-bold mb-4 text-white">Krisan Kalindo</h3>
+                            <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-6 hidden md:block">
+                                Large-scale B2B e-commerce platform for medical equipment distribution. Engineered with real-time stock management and automated invoicing systems.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Laravel</span>
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">MySQL</span>
+                            </div>
+                        </div>
+                        <a href="/wip.html" class="w-16 h-16 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 transition shrink-0 hover:shadow-[0_0_30px_rgba(204,255,0,0.4)]">
+                            <i class="fas fa-arrow-right -rotate-45 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="group relative mb-24 md:mb-40 reveal">
+                <div class="w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl overflow-hidden relative bg-surface border border-white/5">
+                    <img src="/puskesmas.png" alt="Pencarian Hati" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-zoom">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-80 transition duration-500"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                        <div class="max-w-3xl">
+                            <span class="text-accent font-display font-bold text-xl md:text-2xl mb-2 block">02</span>
+                            <h3 class="text-4xl md:text-6xl font-bold mb-4 text-white">Pencarian Hati</h3>
+                            <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-6 hidden md:block">
+                                Laboratory data integration system connecting health centers and hospitals across Balikpapan city in a unified, secure data ecosystem.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Web App</span>
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">HealthTech</span>
+                            </div>
+                        </div>
+                        <a href="https://sipencarianhati.com" class="w-16 h-16 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 transition shrink-0 hover:shadow-[0_0_30px_rgba(204,255,0,0.4)]">
+                            <i class="fas fa-arrow-right -rotate-45 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="group relative mb-24 md:mb-40 reveal">
+                <div class="w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl overflow-hidden relative bg-surface border border-white/5">
+                    <img src="/alwildan.jpg" alt="Al Wildan" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-zoom">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-80 transition duration-500"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                        <div class="max-w-3xl">
+                            <span class="text-accent font-display font-bold text-xl md:text-2xl mb-2 block">03</span>
+                            <h3 class="text-4xl md:text-6xl font-bold mb-4 text-white">Al Wildan</h3>
+                            <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-6 hidden md:block">
+                                Comprehensive visual identity and branding for an educational institution. Covering logo creation, social media assets, and digital publication guidelines.
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Branding</span>
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Design</span>
+                            </div>
+                        </div>
+                        <a href="https://web.mataram.alwildan.sch.id/" class="w-16 h-16 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 transition shrink-0 hover:shadow-[0_0_30px_rgba(204,255,0,0.4)]">
+                            <i class="fas fa-arrow-right -rotate-45 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="group relative reveal">
+                <div class="w-full aspect-[4/3] md:aspect-[21/9] rounded-2xl overflow-hidden relative bg-surface border border-white/5">
+                    <img src="/decablue.png" alt="decablue" class="w-full h-full object-cover filter grayscale group-hover:grayscale-0 img-hover-zoom">
+                    
+                    <div class="absolute inset-0 bg-gradient-to-t from-black via-black/40 to-transparent opacity-90 group-hover:opacity-80 transition duration-500"></div>
+
+                    <div class="absolute bottom-0 left-0 w-full p-6 md:p-16 flex flex-col md:flex-row justify-between items-start md:items-end gap-8">
+                        <div class="max-w-3xl">
+                            <span class="text-accent font-display font-bold text-xl md:text-2xl mb-2 block">04</span>
+                            <h3 class="text-4xl md:text-6xl font-bold mb-4 text-white">Decablue Society</h3>
+                            <p class="text-gray-300 text-lg md:text-xl leading-relaxed mb-6 hidden md:block">
+                                Co-founder of a crypto startup called Decablue Society, operating in the crypto space and creating a crypto token named Vetiver ($VETI).
+                            </p>
+                            <div class="flex flex-wrap gap-3">
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Crypto</span>
+                                <span class="px-4 py-2 bg-accent/20 backdrop-blur-md rounded-full text-xs font-bold uppercase text-accent border border-accent/30">Society</span>
+                            </div>
+                        </div>
+                        <a href="https://vetiver.network" class="w-16 h-16 rounded-full bg-accent text-black flex items-center justify-center hover:scale-110 transition shrink-0 hover:shadow-[0_0_30px_rgba(204,255,0,0.4)]">
+                            <i class="fas fa-arrow-right -rotate-45 text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mini Projects (6 Items Grid) -->
+    <section id="mini" class="py-32 px-4 md:px-6 border-t border-white/5 bg-black">
+        <div class="max-w-[100rem] mx-auto">
+            <div class="mb-20 reveal">
+                <h2 class="font-display text-4xl md:text-5xl font-bold uppercase">Personal <br> <span class="text-secondary italic">Explorations</span></h2>
+                <p class="text-secondary mt-4 max-w-lg">A collection of 6 self-initiated projects focusing on experimenting with new technologies, frameworks, and UI paradigms.</p>
+            </div>
+            
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Mini 1 -->
+                <div class="group reveal">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="/gpukyu.png" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            JavaScript
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">GPUKYU</h3>
+                    <p class="text-secondary text-sm">A website for testing GPU performance with benchmark scores from our proprietary KYU metric. Includes official signed certification.</p>
+                </div>
+
+                <!-- Mini 2 -->
+                <div class="group reveal" style="transition-delay: 100ms;">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="/nemonymus.png" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            Node.JS
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">Nemonymus</h3>
+                    <p class="text-secondary text-sm">Server-based WhatsApp bot that can store user data with JSON-formatted database.</p>
+                </div>
+
+                <!-- Mini 3 -->
+                <div class="group reveal" style="transition-delay: 200ms;">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="/gamemanagement.jpeg" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            Flutter
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">GameOne</h3>
+                    <p class="text-secondary text-sm">Flutter-based application with features for managing multi-platform games.</p>
+                </div>
+
+                <!-- Mini 4 -->
+                <div class="group reveal">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="attendanceapp.jpeg" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            Flutter
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">Absenter</h3>
+                    <p class="text-secondary text-sm">Flutter-based employee management application using Firebase database.</p>
+                </div>
+
+                <!-- Mini 5 -->
+                <div class="group reveal" style="transition-delay: 100ms;">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="/scanner.jpeg" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            Flutter
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">QueScanner</h3>
+                    <p class="text-secondary text-sm">Flutter-based application for generating QR codes or scanning QR codes.</p>
+                </div>
+
+                <!-- Mini 6 -->
+                <div class="group reveal" style="transition-delay: 200ms;">
+                    <div class="w-full aspect-video rounded-2xl overflow-hidden mb-6 relative border border-white/10">
+                        <img src="/newsapp.jpeg" class="w-full h-full object-cover img-hover-zoom filter grayscale group-hover:grayscale-0">
+                        <div class="absolute top-4 right-4 bg-black/50 backdrop-blur-md px-3 py-1 rounded-full border border-white/10 text-xs font-bold text-white">
+                            Flutter
+                        </div>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-2 group-hover:text-accent transition">Luxu News</h3>
+                    <p class="text-secondary text-sm">Cross-platform application built with Flutter using API integration to display current news and information.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experiences -->
+    <section id="experience" class="py-32 px-6 border-t border-white/5 bg-surface relative overflow-hidden">
+        <div class="max-w-[80rem] mx-auto z-10 relative">
+            <h2 class="font-display text-4xl md:text-5xl font-bold uppercase mb-20 reveal">Programs & <br> <span class="text-accent italic">Experiences</span></h2>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-32 reveal">
+                <div class="order-2 lg:order-1">
+                    <p class="text-accent font-bold tracking-widest text-sm mb-2">2026</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">IDN Live In</h3>
+                    <p class="text-xl text-white/50 mb-6 font-display italic">Survival Program in Lombok, Mataram</p>
+                    <p class="text-secondary leading-relaxed mb-6">
+                        A survival challenge in Lombok, Mataram with only Rp 50,000. Required to survive for approximately one week while finding food, shelter, and work to earn money for the return ticket.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Self-Reliance</span>
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Resilience</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 order-1 lg:order-2">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
+                        <img src="/lombok.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 translate-y-8">
+                        <video src="/lombok.mp4" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-32 reveal">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 translate-y-8">
+                        <img src="/alikhlas1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
+                        <img src="/alikhlas2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+                <div class="pl-0 lg:pl-12">
+                    <p class="text-accent font-bold tracking-widest text-sm mb-2">2025</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">IDN Mengajar</h3>
+                    <p class="text-xl text-white/50 mb-6 font-display italic">Teaching IT at Al Ikhlas Islamic Boarding School</p>
+                    <p class="text-secondary leading-relaxed mb-6">
+                        Teaching at Al Ikhlas boarding school in Semarang. Instructed beginners in Figma and design fundamentals.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Bootcamp</span>
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Teaching</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-32 reveal">
+                <div class="order-2 lg:order-1">
+                    <p class="text-accent font-bold tracking-widest text-sm mb-2">2025</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">Google Devfest ISTTS</h3>
+                    <p class="text-xl text-white/50 mb-6 font-display italic">Google DevFest in Surabaya</p>
+                    <p class="text-secondary leading-relaxed mb-6">
+                        Participated in Google's flagship event series, Google DevFest, held at an institute in Surabaya.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Event</span>
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">DevFest</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 order-1 lg:order-2">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
+                        <img src="/istts1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 translate-y-8">
+                        <img src="/istts2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-32 reveal">
+                <div class="grid grid-cols-2 gap-4">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 translate-y-8">
+                        <img src="/devfest1.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
+                        <img src="/devfest2.jpg" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+                <div class="pl-0 lg:pl-12">
+                    <p class="text-accent font-bold tracking-widest text-sm mb-2">2024</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">Google Devfest</h3>
+                    <p class="text-xl text-white/50 mb-6 font-display italic">Google DevFest in Surabaya</p>
+                    <p class="text-secondary leading-relaxed mb-6">
+                        Participated in Google's flagship event series, Google DevFest, held at a hotel in Surabaya.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Event</span>
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">DevFest</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid lg:grid-cols-2 gap-12 items-center mb-32 reveal">
+                <div class="order-2 lg:order-1">
+                    <p class="text-accent font-bold tracking-widest text-sm mb-2">2025</p>
+                    <h3 class="text-3xl md:text-4xl font-bold mb-2">IDN Mengajar</h3>
+                    <p class="text-xl text-white/50 mb-6 font-display italic">Teaching IT at SMA Muhammadiyah 1 Klaten</p>
+                    <p class="text-secondary leading-relaxed mb-6">
+                        Teaching at SMA Muhammadiyah 1 Klaten with a colleague. Instructed students on programming basics using HTML and CSS.
+                    </p>
+                    <div class="flex gap-3">
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Teaching</span>
+                        <span class="text-xs uppercase border border-white/20 px-3 py-1 rounded-full">Bootcamp</span>
+                    </div>
+                </div>
+                <div class="grid grid-cols-2 gap-4 order-1 lg:order-2">
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10">
+                        <img src="https://images.unsplash.com/photo-1504384764586-bb4cdc1707b0?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                    <div class="rounded-2xl overflow-hidden aspect-[4/5] border border-white/10 translate-y-8">
+                        <img src="https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&q=80&w=600" class="w-full h-full object-cover grayscale hover:grayscale-0 transition duration-500">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section with Photo -->
+    <section id="about" class="py-32 px-6 border-t border-white/5 bg-black">
+        <div class="max-w-[80rem] mx-auto reveal">
+            <h2 class="font-display text-4xl md:text-6xl font-bold mb-16 text-center">ABOUT ME <br> THE CREATIVE DEVELOPER</h2>
+            
+            <div class="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+                <div class="rounded-[2rem] overflow-hidden aspect-square md:aspect-[4/5] border border-white/10 relative">
+                    <!-- Placeholder for your photo (Replace the image URL with your actual photo) -->
+                    <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full h-full object-cover opacity-80 hover:opacity-100 transition duration-500 filter grayscale hover:grayscale-0">
+                    <div class="absolute bottom-6 left-6 bg-black/50 backdrop-blur-md px-4 py-2 border border-white/10 rounded-full flex items-center gap-2">
+                        <div class="w-2 h-2 rounded-full bg-accent animate-pulse"></div>
+                        <span class="text-xs font-bold uppercase tracking-widest text-white">Rakhan Ataya P.</span>
+                    </div>
+                </div>
+
+                <div>
+                    <p class="text-secondary text-lg md:text-xl leading-relaxed mb-8">
+                        Currently studying Software Engineering at SMK IDN Boarding School Solo. 
+                        I don't just write code; I build solutions. By bridging the gap between robust <strong>backend logic</strong> and stunning <strong>UI/UX design</strong>, I deliver digital products that perform as brilliantly as they look.
+                    </p>
+                    <div class="flex flex-wrap gap-4">
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">Frontend</span>
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">Backend</span>
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">Mobile Apps</span>
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">UI/UX Designer</span>
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">Logo Designer</span>
+                        <span class="px-5 py-2 border border-white/10 bg-surface rounded-full text-sm font-bold">Graphic Designer</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Form (Solid & Neat, no floating bugs) -->
+    <section id="contact" class="py-32 px-6 border-t border-white/5 bg-surface relative">
+        <div class="max-w-4xl mx-auto text-center reveal">
+            <h2 class="font-display text-5xl md:text-[8rem] font-bold mb-6 hover:text-accent transition duration-300 leading-none">
+                LET'S TALK
+            </h2>
+            <p class="text-secondary text-lg md:text-xl mb-16">Got a crazy idea? Let's make it real.</p>
+
+            <form id="whatsappForm" onsubmit="sendToWhatsapp(event)" class="max-w-xl mx-auto text-left space-y-10">
+                <div>
+                    <label class="block text-accent text-sm font-bold tracking-widest uppercase mb-2">Your Name</label>
+                    <input type="text" id="name" class="w-full bg-transparent border-b-2 border-gray-700 py-3 text-2xl text-white focus:outline-none focus:border-accent placeholder-gray-800 transition-colors" placeholder="John Doe" required />
+                </div>
+
+                <div>
+                    <label class="block text-accent text-sm font-bold tracking-widest uppercase mb-2">Project Details</label>
+                    <textarea id="message" rows="1" class="w-full bg-transparent border-b-2 border-gray-700 py-3 text-2xl text-white focus:outline-none focus:border-accent placeholder-gray-800 transition-colors resize-none" placeholder="I want to build..." required></textarea>
+                </div>
+
+                <button type="submit" class="w-full py-6 bg-white text-black font-bold text-xl uppercase tracking-widest hover:bg-accent transition-colors mt-8 rounded-sm">
+                    Start Project (WA)
+                </button>
+            </form>
+
+            <div class="mt-24 flex justify-center gap-12 text-2xl pb-16">
+                <a href="https://github.com/rakhan17" class="hover:text-accent transition hover:-translate-y-2 transform duration-300"><i class="fab fa-github"></i></a>
+                <a href="https://www.linkedin.com/in/rakhan-ataya-70631a334/" class="hover:text-accent transition hover:-translate-y-2 transform duration-300"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </div>
+    </section>
+
+    <script>
+        function sendToWhatsapp(e) {
+            e.preventDefault();
+            const name = document.getElementById('name').value;
+            const message = document.getElementById('message').value;
+            const phone = "6287734544536";
+            const text = `Hi Rakhan, my name is ${name}.%0A%0A${message}`;
+            window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+        }
+
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 100;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal();
+
+        const tx = document.getElementsByTagName("textarea");
+        for (let i = 0; i < tx.length; i++) {
+            tx[i].setAttribute("style", "height:" + (tx[i].scrollHeight) + "px;overflow-y:hidden;");
+            tx[i].addEventListener("input", OnInput, false);
+        }
+        function OnInput() {
+            this.style.height = 0;
+            this.style.height = (this.scrollHeight) + "px";
+        }
+    </script>
+</body>
+</html>
