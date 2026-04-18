@@ -4,6 +4,19 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rakhan Ataya | Creative Developer</title>
+
+    <meta name="description" content="Rakhan Ataya is a Creative Developer specializing in Frontend, Mobile (Flutter), and Backend (Laravel). Let's build your next digital masterpiece.">
+
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://portofoliomu.com/">
+    <meta property="og:title" content="Rakhan Ataya | Creative Developer">
+    <meta property="og:description" content="I transform complex logic into delightful, classic, and engaging visual experiences.">
+    <meta property="og:image" content="https://link-gambar-thumbnail-website-mu.jpg">
+
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:title" content="Rakhan Ataya | Creative Developer">
+    <meta property="twitter:description" content="I transform complex logic into delightful, classic, and engaging visual experiences.">
+    <meta property="twitter:image" content="https://link-gambar-thumbnail-website-mu.jpg">
     
     <!-- Favicon -->
      
@@ -69,6 +82,9 @@
             min-width: 100%;
             flex-shrink: 0;
             align-items: center;
+        }
+        .marquee-content:hover {
+            animation-play-state: paused;
         }
         @keyframes marquee {
             0% { transform: translateX(0); }
@@ -172,6 +188,13 @@
             pointer-events: none;
         }
 
+        .card-fall-mode {
+            transform: translateY(100vh) rotate(15deg) scale(0.8) !important;
+            opacity: 0;
+            transition: all 1.5s cubic-bezier(0.55, 0.085, 0.68, 0.53) !important;
+            pointer-events: none;
+        }
+
         .hover-shake:hover { animation: wobble-steps 0.3s steps(2) infinite; }
 
         /* Mobile Touch Improvements */
@@ -226,14 +249,14 @@
                 </a>
                 
                 <!-- Mobile Menu Toggle -->
-                <button id="mobile-menu-btn" class="md:hidden p-2 border-2 border-ink rounded-full bg-white hover:bg-accent-yellow transition">
+                <button id="mobile-menu-btn" aria-label="Toggle Menu" class="md:hidden p-2 border-2 border-ink rounded-full bg-white hover:bg-accent-yellow transition">
                     <i class="fas fa-bars text-ink"></i>
                 </button>
             </div>
         </div>
         
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="hidden md:hidden mt-2 mx-2 bg-paper border-2 border-ink rounded-2xl shadow-classic p-4">
+        <div id="mobile-menu" class="absolute top-20 left-4 right-4 bg-paper border-2 border-ink rounded-2xl shadow-classic p-4 opacity-0 scale-95 pointer-events-none transition-all duration-300 origin-top z-40 md:hidden">
             <div class="flex flex-col gap-3 text-sm">
                 <a href="#services" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Services</a>
                 <a href="#works" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Works</a>
@@ -360,10 +383,10 @@
             
             <!-- Project 1 -->
             <div class="group reveal-left relative">
-                <a href="https://krisankalindoutama.com/" class="block">
+                <a href="https://krisankalindoutama.com/" target="_blank" rel="noopener noreferrer" class="block">
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="/krisan.png" alt="Krisan Kalindo">
+                            <img src="/krisan.png" alt="Krisan Kalindo" loading="lazy">
                         </div>
                     </div>
                     <div class="flex justify-between items-start mt-8">
@@ -381,10 +404,10 @@
 
             <!-- Project 2 -->
             <div class="group reveal-right md:mt-32 relative">
-                <a href="https://sipencarianhati.com" class="block">
+                <a href="https://sipencarianhati.com" target="_blank" rel="noopener noreferrer" class="block">
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="/puskesmas.png" alt="Pencarian Hati">
+                            <img src="/puskesmas.png" alt="Pencarian Hati" loading="lazy">
                         </div>
                     </div>
                     <div class="flex justify-between items-start mt-8">
@@ -402,10 +425,10 @@
 
             <!-- Project 3 -->
             <div class="group reveal-left relative mt-12 md:mt-0">
-                <a href="https://web.mataram.alwildan.sch.id/" class="block">
+                <a href="https://web.mataram.alwildan.sch.id/" target="_blank" rel="noopener noreferrer" class="block">
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="/alwildan.jpg" alt="Al Wildan">
+                            <img src="/alwildan.jpg" alt="Al Wildan" loading="lazy">
                         </div>
                     </div>
                     <div class="flex justify-between items-start mt-8">
@@ -423,10 +446,10 @@
 
             <!-- Project 4 -->
             <div class="group reveal-right md:mt-32 relative mt-12 md:mt-0">
-                <a href="https://vetiver.network" class="block">
+                <a href="https://vetiver.network" target="_blank" rel="noopener noreferrer" class="block">
                     <div class="project-card">
                         <div class="project-image-container">
-                            <img src="/decablue.png" alt="Decablue Society">
+                            <img src="/decablue.png" alt="Decablue Society" loading="lazy">
                         </div>
                     </div>
                     <div class="flex justify-between items-start mt-8">
@@ -458,7 +481,7 @@
                     <span>Figma</span> <span class="text-xl md:text-2xl">✸</span>
                     <span>MySQL</span> <span class="text-xl md:text-2xl">✸</span>
                 </span>
-                <span class="flex items-center gap-6 md:gap-12">
+                <span class="flex items-center gap-6 md:gap-12" aria-hidden="true">
                     <span>React.js</span> <span class="text-xl md:text-2xl">✸</span>
                     <span>Laravel</span> <span class="text-xl md:text-2xl">✸</span>
                     <span>Flutter</span> <span class="text-xl md:text-2xl">✸</span>
@@ -490,7 +513,7 @@
                 <!-- Mini Card 1 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/gpukyu.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/gpukyu.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JS</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">GPUKYU</h3>
@@ -500,7 +523,7 @@
                 <!-- Mini Card 2 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/nemonymus.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/nemonymus.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Node.js</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Nemonymus</h3>
@@ -510,7 +533,7 @@
                 <!-- Mini Card 3 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/gamemanagement.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/gamemanagement.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">GameOne</h3>
@@ -520,7 +543,7 @@
                 <!-- Mini Card 4 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/attendanceapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/attendanceapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Absenter</h3>
@@ -530,7 +553,7 @@
                 <!-- Mini Card 5 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/scanner.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/scanner.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">QueScanner</h3>
@@ -540,7 +563,7 @@
                 <!-- Mini Card 6 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/newsapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/newsapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Luxu News</h3>
@@ -550,7 +573,7 @@
                 <!-- Mini Card 8 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/deca.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/deca.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Golang</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">LubiX CLI</h3>
@@ -560,7 +583,7 @@
                 <!-- Mini Card 9 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/lubix.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <img src="/lubix.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">LubiX</div>
                     </div>
                     <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">LubiX Framework</h3>
@@ -580,7 +603,7 @@
                 <!-- TK -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-6 transition-transform">
-                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2">
+                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2" loading="lazy">
                     </div>
                     <span class="text-accent-red font-serif italic text-sm mb-2 block">Kindergarten</span>
                     <h3 class="font-serif text-2xl mb-2">TKIT Balikpapan Islamic School</h3>
@@ -590,7 +613,7 @@
                 <!-- SD -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-100 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-6 transition-transform">
-                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2">
+                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2" loading="lazy">
                     </div>
                     <span class="text-accent-blue font-serif italic text-sm mb-2 block">Elementary School</span>
                     <h3 class="font-serif text-2xl mb-2">SD Islam Cahaya Ilmu</h3>
@@ -600,7 +623,7 @@
                 <!-- SMP -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-200 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform">
-                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2">
+                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2" loading="lazy">
                     </div>
                     <span class="text-accent-green font-serif italic text-sm mb-2 block">Junior High School</span>
                     <h3 class="font-serif text-2xl mb-2">SMP Al Madinah Surakarta</h3>
@@ -610,7 +633,7 @@
                 <!-- SMK -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-300 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-12 transition-transform">
-                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2">
+                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2" loading="lazy">
                     </div>
                     <span class="text-accent-yellow font-serif italic text-sm mb-2 block">Vocational High School</span>
                     <h3 class="font-serif text-2xl mb-2">SMK IDN Boarding School Solo</h3>
@@ -643,10 +666,10 @@
                     <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-red/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/lombok1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/lombok1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/lombok2.png" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/lombok2.png" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -664,10 +687,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-green/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/alikhlas1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/alikhlas1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/alikhlas2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/alikhlas2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -689,10 +712,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-blue/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/istts1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/istts1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/istts2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/istts2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -718,10 +741,10 @@
                     <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-yellow/20 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-full overflow-hidden w-1/2 shadow-classic bg-white p-2 aspect-square group-hover:-translate-y-2 group-hover:rotate-[10deg] transition-all duration-500 z-10">
-                            <img src="/devfest1.jpg" class="w-full h-full object-cover rounded-full mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/devfest1.jpg" class="w-full h-full object-cover rounded-full mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                         <div class="border-2 border-ink rounded-[100px_100px_0_0] overflow-hidden w-1/2 shadow-classic bg-white p-2 translate-y-8 group-hover:-translate-y-2 group-hover:-rotate-[5deg] transition-all duration-500 z-10">
-                            <img src="/istts1.jpg" class="w-full h-full object-cover rounded-[90px_90px_0_0] mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/istts1.jpg" class="w-full h-full object-cover rounded-[90px_90px_0_0] mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                     </div>
                 </div>
@@ -739,10 +762,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-red/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/klaten1.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/klaten1.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/klaten2.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
+                            <img src="/klaten2.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -772,7 +795,7 @@
                     <div class="absolute -inset-4 border-2 border-paper rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 z-10"></div>
                     <div class="absolute -inset-4 border-2 border-accent-yellow rounded-[40px] -rotate-3 group-hover:-rotate-12 transition-transform duration-500 z-10"></div>
                     <div class="relative bg-paper rounded-[40px] overflow-hidden p-3 shadow-2xl z-20">
-                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500">
+                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500" loading="lazy">
                     </div>
                     
                     <svg class="absolute -bottom-10 -left-10 w-24 h-24 text-accent-red scroll-spin z-30" viewBox="0 0 100 100" fill="currentColor">
@@ -908,7 +931,7 @@
         // 3. Advanced Reveal Animation (Intersection Observer)
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-            const observer = new IntersectionObserver((entries, observer) => {
+            const observer = new IntersectionObserver((entries, observer) => {22
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
@@ -927,16 +950,24 @@
             const name = document.getElementById('name').value;
             const message = document.getElementById('message').value;
             const phone = "6287734544536";
-            const text = `Greetings Rakhan! My name is ${name}.%0A%0A${message}`;
+            const text = encodeURIComponent(`Greetings Rakhan! My name is ${name}.\n\n${message}`);
 
-            // 1. Add card fall class
+            const waWindow = window.open('about:blank', '_blank');
+
             card.classList.add('card-fall-mode');
 
-            // 2. Open WhatsApp after animation
             setTimeout(() => {
-                window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
-                // Reset card state after a delay if user returns
-                setTimeout(() => card.classList.remove('card-fall-mode'), 2000);
+                const waUrl = `https://wa.me/${phone}?text=${text}`;
+                if (waWindow) {
+                    waWindow.location.href = waUrl;
+                } else {
+                    window.location.href = waUrl;
+                }
+
+                setTimeout(() => {
+                    card.classList.remove('card-fall-mode');
+                    form.reset();
+                }, 1000);
             }, 1500);
         }
 
@@ -951,18 +982,48 @@
         // 6. Mobile Menu Toggle
         const mobileMenuBtn = document.getElementById('mobile-menu-btn');
         const mobileMenu = document.getElementById('mobile-menu');
+
         if (mobileMenuBtn && mobileMenu) {
             mobileMenuBtn.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
+                mobileMenu.classList.toggle('opacity-0');
+                mobileMenu.classList.toggle('scale-95');
+                mobileMenu.classList.toggle('pointer-events-none');
+
+                const icon = mobileMenuBtn.querySelector('i');
+                icon.classList.toggle('fa-bars');
+                icon.classList.toggle('fa-xmark');
             });
-            // Close menu when clicking a link
+
             mobileMenu.querySelectorAll('a').forEach(link => {
                 link.addEventListener('click', () => {
-                    mobileMenu.classList.add('hidden');
+                    mobileMenu.classList.add('opacity-0', 'scale-95', 'pointer-events-none');
+                    const icon = mobileMenuBtn.querySelector('i');
+                    icon.classList.add('fa-bars');
+                    icon.classList.remove('fa-xmark');
                 });
             });
         }
 
-    </script>
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav .hidden.md\\:flex a");
+
+    window.addEventListener("scroll", () => {
+        let current = "";
+        sections.forEach((section) => {
+            const sectionTop = section.offsetTop;
+            if (scrollY >= sectionTop - 200) {
+                current = section.getAttribute("id");
+            }
+        });
+
+        navLinks.forEach((link) => {
+            link.classList.remove("text-accent-red", "font-bold");
+            if (current && link.getAttribute("href").includes(current)) {
+                link.classList.add("text-accent-red", "font-bold");
+            }
+        });
+    });
+
+</script>
 </body>
 </html>
