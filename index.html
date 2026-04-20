@@ -69,6 +69,245 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
 
+        #preloader {
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: #E6C265;
+            color: #2C2A25;
+            border-bottom: 6px solid #2C2A25;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transform: translateY(0);
+            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+        #preloader.is-done {
+            transform: translateY(-110%);
+        }
+        #preloader .preloader-card {
+            background: #fff;
+            border: 4px solid #2C2A25;
+            border-radius: 28px;
+            box-shadow: 12px 12px 0px 0px rgba(44, 42, 37, 1);
+            padding: 28px;
+            width: min(720px, calc(100% - 32px));
+            text-align: center;
+        }
+        #preloader .preloader-title {
+            font-family: 'Fraunces', serif;
+            font-size: clamp(2rem, 6vw, 3.5rem);
+            line-height: 0.95;
+            margin-bottom: 16px;
+        }
+        #preloader .preloader-title .wobble {
+            display: inline-block;
+            animation: wobble-steps 0.6s steps(2) infinite;
+        }
+        #preloader .preloader-percent {
+            font-family: 'Fraunces', serif;
+            font-weight: 700;
+            font-size: clamp(2.5rem, 7vw, 4.25rem);
+            letter-spacing: -0.02em;
+        }
+        #preloader .preloader-sub {
+            margin-top: 10px;
+            font-family: 'Karla', sans-serif;
+            opacity: 0.75;
+        }
+        #preloader .preloader-meter {
+            margin-top: 18px;
+            height: 14px;
+            border-radius: 9999px;
+            border: 3px solid #2C2A25;
+            background: #F7F4ED;
+            overflow: hidden;
+        }
+        #preloader .preloader-meter > div {
+            height: 100%;
+            width: 0%;
+            background: #E06D53;
+            border-right: 3px solid #2C2A25;
+            transition: width 0.15s ease;
+        }
+
+        #mute-toggle {
+            position: fixed;
+            right: 16px;
+            bottom: 16px;
+            z-index: 9999;
+        }
+        #mute-toggle button {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #fff;
+            border: 2px solid #2C2A25;
+            border-radius: 9999px;
+            padding: 10px 14px;
+            box-shadow: 6px 6px 0px 0px rgba(44, 42, 37, 1);
+            transition: transform 160ms ease, box-shadow 160ms ease, background 160ms ease;
+            font-family: 'Karla', sans-serif;
+            font-weight: 800;
+        }
+        #mute-toggle button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px 0px rgba(44, 42, 37, 1);
+            background: #E6C265;
+        }
+
+        .page-shake {
+            animation: page-shake 420ms steps(2) 1;
+        }
+        @keyframes page-shake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            15% { transform: translate(-2px, 1px) rotate(-0.2deg); }
+            30% { transform: translate(2px, -1px) rotate(0.2deg); }
+            45% { transform: translate(-3px, -1px) rotate(-0.3deg); }
+            60% { transform: translate(3px, 1px) rotate(0.3deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        #secret-game {
+            position: fixed;
+            inset: 0;
+            z-index: 10001;
+            display: none;
+            background: rgba(44, 42, 37, 0.7);
+            backdrop-filter: blur(8px);
+        }
+        #secret-game.is-open {
+            display: grid;
+            place-items: center;
+        }
+        #secret-game .panel {
+            width: min(920px, calc(100% - 24px));
+            background: #fff;
+            border: 4px solid #2C2A25;
+            border-radius: 28px;
+            box-shadow: 12px 12px 0px 0px rgba(44, 42, 37, 1);
+            overflow: hidden;
+        }
+        #secret-game .panel-head {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 14px 16px;
+            border-bottom: 4px solid #2C2A25;
+            background: #F7F4ED;
+        }
+        #secret-game .panel-head .title {
+            font-family: 'Fraunces', serif;
+            font-weight: 800;
+        }
+        #secret-game .panel-head button {
+            width: 44px;
+            height: 44px;
+            border-radius: 9999px;
+            border: 2px solid #2C2A25;
+            background: #fff;
+            box-shadow: 6px 6px 0px 0px rgba(44, 42, 37, 1);
+            transition: transform 160ms ease, box-shadow 160ms ease;
+        }
+        #secret-game .panel-head button:hover {
+            transform: translate(-2px, -2px);
+            box-shadow: 10px 10px 0px 0px rgba(44, 42, 37, 1);
+        }
+        #secret-game .panel-body {
+            padding: 14px;
+            background: #fff;
+        }
+        #secret-game canvas {
+            width: 100%;
+            height: auto;
+            border: 3px solid #2C2A25;
+            border-radius: 18px;
+            display: block;
+            background: #F7F4ED;
+        }
+        #secret-game .hint {
+            margin-top: 10px;
+            font-family: 'Karla', sans-serif;
+            font-weight: 700;
+            opacity: 0.8;
+            display: flex;
+            justify-content: space-between;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .easter-star {
+            position: fixed;
+            left: 0;
+            top: 0;
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            font-family: 'Fraunces', serif;
+            text-shadow: 2px 2px 0 rgba(44, 42, 37, 1);
+            animation: star-float 900ms ease-out forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes star-float {
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.6) rotate(0deg); }
+            15% { opacity: 1; }
+            100% { opacity: 0; transform: translate(calc(-50% + var(--dx)), calc(-50% + var(--dy))) scale(1.25) rotate(var(--rot)); }
+        }
+
+        #view-cursor {
+            position: fixed;
+            left: 0;
+            top: 0;
+            width: 110px;
+            height: 110px;
+            transform: translate(-50%, -50%);
+            pointer-events: none;
+            z-index: 9999;
+            display: grid;
+            place-items: center;
+            opacity: 0;
+            transition: opacity 160ms ease;
+            will-change: left, top;
+        }
+        #view-cursor::before {
+            content: "";
+            position: absolute;
+            inset: 0;
+            border-radius: 9999px;
+            background: rgba(230, 194, 101, 0.55);
+            border: 2px solid #2C2A25;
+            box-shadow: 6px 6px 0px 0px rgba(44, 42, 37, 1);
+            transform: scale(var(--cursor-scale, 0.12));
+            transition: transform 180ms cubic-bezier(0.2, 1, 0.2, 1), background 180ms ease;
+        }
+        #view-cursor .label {
+            position: relative;
+            font-family: 'Karla', sans-serif;
+            font-weight: 900;
+            letter-spacing: 0.18em;
+            font-size: 14px;
+            color: #2C2A25;
+            opacity: 0;
+            transform: translateY(2px);
+            transition: opacity 160ms ease, transform 160ms ease;
+            user-select: none;
+        }
+        #view-cursor.is-active {
+            opacity: 1;
+            --cursor-scale: 1;
+        }
+        #view-cursor.is-active::before {
+            background: rgba(230, 194, 101, 0.75);
+        }
+        #view-cursor.is-active .label {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media (hover: none), (pointer: coarse) {
+            #view-cursor { display: none; }
+        }
+
         /* Marquee Text - Ensure infinite seamless loop */
         .marquee-container { 
             overflow: hidden; 
@@ -197,6 +436,8 @@
 
         .hover-shake:hover { animation: wobble-steps 0.3s steps(2) infinite; }
 
+        summary::-webkit-details-marker { display: none; }
+
         /* Mobile Touch Improvements */
         @media (max-width: 768px) {
             .arch-frame { border-radius: 100px 100px 8px 8px; }
@@ -220,6 +461,42 @@
 </head>
 <body class="antialiased selection:bg-accent-yellow selection:text-ink">
 
+    <div id="preloader" aria-hidden="true">
+        <div class="preloader-card">
+            <div class="preloader-title"><span class="wobble">Loading</span> the craft…</div>
+            <div class="preloader-percent" id="preloader-percent">0%</div>
+            <div class="preloader-sub">Warming up the pixels. One moment.</div>
+            <div class="preloader-meter" aria-hidden="true"><div id="preloader-bar"></div></div>
+        </div>
+    </div>
+
+    <div id="view-cursor" aria-hidden="true"><span class="label">VIEW</span></div>
+
+    <div id="mute-toggle" aria-hidden="false">
+        <button type="button" id="mute-btn" aria-pressed="false" aria-label="Mute sound effects">
+            <i class="fa-solid fa-volume-high"></i>
+            <span id="mute-label">SFX: ON</span>
+        </button>
+    </div>
+
+    <div id="secret-game" aria-hidden="true">
+        <div class="panel" role="dialog" aria-modal="true" aria-label="Secret mini game">
+            <div class="panel-head">
+                <div class="title">Secret Mode: Neon Snake</div>
+                <button type="button" id="secret-close" aria-label="Close secret mode">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <div class="panel-body">
+                <canvas id="snake" width="860" height="480"></canvas>
+                <div class="hint">
+                    <span>Controls: Arrow Keys / WASD</span>
+                    <span>Tip: Press <strong>ESC</strong> to close</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
     <div id="scroll-progress"></div>
 
     <!-- Playful Top Navigation -->
@@ -232,14 +509,16 @@
                 <span class="hidden sm:inline">Rakhan.</span>
             </a>
 
-            <div class="hidden md:flex items-center gap-8 font-medium text-sm">
-                <a href="#services" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Services</a>
-                <a href="#works" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Works</a>
-                <a href="#mini" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Labs</a>
-                <a href="#experience" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Journey</a>
-                <a href="#education" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Education</a>
-                <a href="#process" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Process</a>
-                <a href="#about" class="hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">About</a>
+            <div id="desktop-nav" class="hidden md:flex items-center gap-8 font-medium text-sm">
+                <a href="#services" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Services</a>
+                <a href="#works" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Works</a>
+                <a href="#mini" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Labs</a>
+                <a href="#experience" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Journey</a>
+                <a href="#education" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Education</a>
+                <a href="#process" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Process</a>
+                <a href="#testimonials" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">Proof</a>
+                <a href="#faq" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">FAQ</a>
+                <a href="#about" class="nav-link-audio hover:text-accent-green hover:-translate-y-1 transition transform hover:font-bold">About</a>
             </div>
 
             <div class="flex items-center gap-3">
@@ -258,14 +537,16 @@
         <!-- Mobile Menu -->
         <div id="mobile-menu" class="absolute top-20 left-4 right-4 bg-paper border-2 border-ink rounded-2xl shadow-classic p-4 opacity-0 scale-95 pointer-events-none transition-all duration-300 origin-top z-40 md:hidden">
             <div class="flex flex-col gap-3 text-sm">
-                <a href="#services" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Services</a>
-                <a href="#works" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Works</a>
-                <a href="#mini" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Labs</a>
-                <a href="#experience" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Journey</a>
-                <a href="#education" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Education</a>
-                <a href="#process" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Process</a>
-                <a href="#about" class="py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">About</a>
-                <a href="#contact" class="py-2 px-4 bg-accent-red text-paper rounded-lg font-medium text-center mt-2">Contact</a>
+                <a href="#services" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Services</a>
+                <a href="#works" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Works</a>
+                <a href="#mini" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Labs</a>
+                <a href="#experience" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Journey</a>
+                <a href="#education" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Education</a>
+                <a href="#process" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Process</a>
+                <a href="#testimonials" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">Proof</a>
+                <a href="#faq" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">FAQ</a>
+                <a href="#about" class="nav-link-audio py-2 px-4 hover:bg-accent-yellow/20 rounded-lg font-medium">About</a>
+                <a href="#contact" class="nav-link-audio py-2 px-4 bg-accent-red text-paper rounded-lg font-medium text-center mt-2">Contact</a>
             </div>
         </div>
     </nav>
@@ -292,6 +573,9 @@
         </div>
 
         <div class="max-w-4xl mx-auto z-10 px-4">
+
+            <p id="dynamic-greeting" class="reveal-up delay-100 text-sm md:text-base font-sans text-ink/70 mb-5 md:mb-6"></p>
+
             <h1 class="reveal-up font-serif text-[3rem] sm:text-[4rem] md:text-[6rem] lg:text-[7.5rem] leading-[0.9] tracking-tight text-ink mb-6 md:mb-8 relative mt-8 md:mt-12">
                 The Creative <br>
                 <span class="absolute right-0 bottom-10 -z-10 w-16 h-16 md:w-24 md:h-24 bg-accent-red rounded-full scroll-spin hidden md:block border-2 border-ink"></span>
@@ -301,6 +585,17 @@
             <p class="reveal-up delay-100 text-base sm:text-lg md:text-2xl font-sans max-w-2xl mx-auto text-ink/80 mb-8 md:mb-12 px-2 md:px-0">
                 I'm <strong>Rakhan Ataya</strong>. I transform complex logic into delightful, classic, and engaging visual experiences.
             </p>
+
+            <div class="reveal-up delay-200 flex flex-col sm:flex-row gap-4 items-center justify-center mb-10 md:mb-14">
+                <a href="/CV%20Rakhan%20Ataya.pdf" download class="inline-flex items-center gap-2 bg-ink text-paper px-6 py-3 rounded-full font-serif italic font-medium hover:bg-accent-green transition border-2 border-ink hover:shadow-classic">
+                    <i class="fa-solid fa-file-arrow-down"></i>
+                    <span>Download CV</span>
+                </a>
+                <a href="https://github.com/rakhan17" target="_blank" rel="noopener noreferrer" class="inline-flex items-center gap-2 bg-paper text-ink px-6 py-3 rounded-full font-serif italic font-medium hover:bg-accent-yellow transition border-2 border-ink hover:shadow-classic">
+                    <i class="fa-brands fa-github"></i>
+                    <span>GitHub</span>
+                </a>
+            </div>
 
             <a href="#services" class="reveal-scale delay-200 inline-block group">
                 <div class="w-16 h-16 mx-auto rounded-full border-2 border-ink bg-accent-yellow flex items-center justify-center group-hover:scale-110 group-hover:shadow-[6px_6px_0px_0px_rgba(44,42,37,1)] group-hover:bg-accent-green group-hover:text-white transition-all duration-300 text-ink">
@@ -334,6 +629,203 @@
             </div>
         </div>
     </div>
+
+    <!-- Selected Works -->
+    <section id="works" class="py-32 px-4 md:px-12 max-w-[90rem] mx-auto overflow-hidden relative border-t-2 border-ink border-dashed">
+        
+        <div class="text-center mb-16 md:mb-24 reveal-scale px-4 relative z-10">
+            <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl text-ink">Selected Works</h2>
+            <p class="mt-4 font-sans text-base md:text-lg text-ink/70">A curation of my proudest digital crafts.</p>
+            <svg class="mx-auto mt-6 w-24 md:w-32 h-6 md:h-8 text-accent-red animate-wobble-steps" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M0 10 Q 25 0, 50 10 T 100 10" /></svg>
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 relative z-10">
+            
+            <!-- Project 1 -->
+            <div class="group reveal-left relative">
+                <a href="https://krisankalindoutama.com/" target="_blank" rel="noopener noreferrer" class="block">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="/krisan.png" alt="Krisan Kalindo">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mt-8">
+                        <div>
+                            <span class="text-accent-red font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 01</span>
+                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-red">Krisan Kalindo</h3>
+                            <p class="text-ink/70 font-sans max-w-sm mb-4">A complete digital transformation for an industrial leader in calibration services.</p>
+                        </div>
+                        <div class="flex gap-2 flex-col items-end">
+                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Corporate</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Project 2 -->
+            <div class="group reveal-right md:mt-32 relative">
+                <a href="https://sipencarianhati.com" target="_blank" rel="noopener noreferrer" class="block">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="/puskesmas.png" alt="Pencarian Hati">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mt-8">
+                        <div>
+                            <span class="text-accent-green font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 02</span>
+                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-green">Pencarian Hati</h3>
+                            <p class="text-ink/70 font-sans max-w-sm mb-4">Laboratory data integration system connecting health centers across Balikpapan.</p>
+                        </div>
+                        <div class="flex gap-2 flex-col items-end">
+                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Web App</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Project 3 -->
+            <div class="group reveal-left relative mt-12 md:mt-0">
+                <a href="https://web.mataram.alwildan.sch.id/" target="_blank" rel="noopener noreferrer" class="block">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="/alwildan.jpg" alt="Al Wildan">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mt-8">
+                        <div>
+                            <span class="text-accent-blue font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 03</span>
+                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-blue">Al Wildan</h3>
+                            <p class="text-ink/70 font-sans max-w-sm mb-4">Comprehensive visual identity and branding for an educational institution.</p>
+                        </div>
+                        <div class="flex gap-2 flex-col items-end">
+                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Branding</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+            <!-- Project 4 -->
+            <div class="group reveal-right md:mt-32 relative mt-12 md:mt-0">
+                <a href="https://vetiver.network" target="_blank" rel="noopener noreferrer" class="block">
+                    <div class="project-card">
+                        <div class="project-image-container">
+                            <img src="/decablue.png" alt="Decablue Society">
+                        </div>
+                    </div>
+                    <div class="flex justify-between items-start mt-8">
+                        <div>
+                            <span class="text-accent-yellow font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 04</span>
+                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-yellow">Decablue Society</h3>
+                            <p class="text-ink/70 font-sans max-w-sm mb-4">Co-founder of a crypto startup creating the Vetiver ($VETI) token.</p>
+                        </div>
+                        <div class="flex gap-2 flex-col items-end">
+                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Crypto</span>
+                        </div>
+                    </div>
+                </a>
+            </div>
+
+        </div>
+    </section>
+
+    <!-- Mini Projects -->
+    <section id="mini" class="py-32 px-4 md:px-12 bg-white relative overflow-hidden">
+        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style="background-image: radial-gradient(#2C2A25 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
+        
+        <div class="max-w-[90rem] mx-auto relative z-10">
+            <div class="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 reveal-scale">
+                <div>
+                    <h2 class="font-serif text-3xl sm:text-4xl md:text-6xl text-ink inline-block hover:skew-x-3 transition-transform">The Laboratory</h2>
+                    <p class="mt-4 font-sans text-base md:text-lg text-ink/70 max-w-md">Personal explorations, experiments, and playful projects.</p>
+                </div>
+                <div class="w-20 h-20 md:w-24 md:h-24 border-2 border-ink rounded-full flex items-center justify-center bg-paper text-ink shadow-classic scroll-spin cursor-pointer shrink-0">
+                    <span class="font-serif italic font-bold text-sm md:text-base">Mini.</span>
+                </div>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
+                <!-- Mini Card 1 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/valolite.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Three.js</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Valolite</h3>
+                    <p class="font-sans text-sm text-ink/70">A high-performance 3D FPS game engine built entirely on the web using Three.js and custom shaders.</p>
+                </div>
+
+                <!-- Mini Card 2 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/dioxide.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Golang</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Dioxide CLI</h3>
+                    <p class="font-sans text-sm text-ink/70">Industrial-grade performance suite in Go. Built for elite system control, privileged shell access, and bare-metal telemetry.</p>
+                </div>
+
+                <!-- Mini Card 3 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/gpukyu.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JS</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">GPUKYU</h3>
+                    <p class="font-sans text-sm text-ink/70">A website for testing GPU performance with benchmark scores.</p>
+                </div>
+
+                <!-- Mini Card 4 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/attendanceapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Absenter</h3>
+                    <p class="font-sans text-sm text-ink/70">Flutter-based employee management application using Firebase database.</p>
+                </div>
+
+                <!-- Mini Card 5 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/scanner.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">QueScanner</h3>
+                    <p class="font-sans text-sm text-ink/70">Flutter application for generating and scanning QR codes.</p>
+                </div>
+
+                <!-- Mini Card 6 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/newsapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Luxu News</h3>
+                    <p class="font-sans text-sm text-ink/70">Cross-platform news app with API integration for current information.</p>
+                </div>
+
+                <!-- Mini Card 8 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/deca.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Golang</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">LubiX CLI</h3>
+                    <p class="font-sans text-sm text-ink/70">CLI tool built in Go to support LubiX framework development workflow.</p>
+                </div>
+
+                <!-- Mini Card 9 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/lubix.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">LubiX</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">LubiX Framework</h3>
+                    <p class="font-sans text-sm text-ink/70">Modern framework with JS frontend and PHP backend for rapid development.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- NEW: Services / Offerings -->
     <section id="services" class="py-32 px-4 md:px-12 bg-white relative">
@@ -370,229 +862,6 @@
         </div>
     </section>
 
-    <!-- Selected Works -->
-    <section id="works" class="py-32 px-4 md:px-12 max-w-[90rem] mx-auto overflow-hidden relative border-t-2 border-ink border-dashed">
-        
-        <div class="text-center mb-16 md:mb-24 reveal-scale px-4 relative z-10">
-            <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl text-ink">Selected Works</h2>
-            <p class="mt-4 font-sans text-base md:text-lg text-ink/70">A curation of my proudest digital crafts.</p>
-            <svg class="mx-auto mt-6 w-24 md:w-32 h-6 md:h-8 text-accent-red animate-wobble-steps" viewBox="0 0 100 20" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round"><path d="M0 10 Q 25 0, 50 10 T 100 10" /></svg>
-        </div>
-
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-16 lg:gap-24 relative z-10">
-            
-            <!-- Project 1 -->
-            <div class="group reveal-left relative">
-                <a href="https://krisankalindoutama.com/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="/krisan.png" alt="Krisan Kalindo" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start mt-8">
-                        <div>
-                            <span class="text-accent-red font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 01</span>
-                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-red">Krisan Kalindo</h3>
-                            <p class="text-ink/70 font-sans max-w-sm mb-4">A complete digital transformation for an industrial leader in calibration services.</p>
-                        </div>
-                        <div class="flex gap-2 flex-col items-end">
-                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Corporate</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Project 2 -->
-            <div class="group reveal-right md:mt-32 relative">
-                <a href="https://sipencarianhati.com" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="/puskesmas.png" alt="Pencarian Hati" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start mt-8">
-                        <div>
-                            <span class="text-accent-green font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 02</span>
-                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-green">Pencarian Hati</h3>
-                            <p class="text-ink/70 font-sans max-w-sm mb-4">Laboratory data integration system connecting health centers across Balikpapan.</p>
-                        </div>
-                        <div class="flex gap-2 flex-col items-end">
-                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Web App</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Project 3 -->
-            <div class="group reveal-left relative mt-12 md:mt-0">
-                <a href="https://web.mataram.alwildan.sch.id/" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="/alwildan.jpg" alt="Al Wildan" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start mt-8">
-                        <div>
-                            <span class="text-accent-blue font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 03</span>
-                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-blue">Al Wildan</h3>
-                            <p class="text-ink/70 font-sans max-w-sm mb-4">Comprehensive visual identity and branding for an educational institution.</p>
-                        </div>
-                        <div class="flex gap-2 flex-col items-end">
-                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Branding</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-            <!-- Project 4 -->
-            <div class="group reveal-right md:mt-32 relative mt-12 md:mt-0">
-                <a href="https://vetiver.network" target="_blank" rel="noopener noreferrer" class="block">
-                    <div class="project-card">
-                        <div class="project-image-container">
-                            <img src="/decablue.png" alt="Decablue Society" loading="lazy">
-                        </div>
-                    </div>
-                    <div class="flex justify-between items-start mt-8">
-                        <div>
-                            <span class="text-accent-yellow font-serif italic text-lg mb-1 block group-hover:translate-x-2 transition-transform">No. 04</span>
-                            <h3 class="text-3xl font-serif text-ink mb-3 group-hover:underline decoration-2 underline-offset-4 decoration-accent-yellow">Decablue Society</h3>
-                            <p class="text-ink/70 font-sans max-w-sm mb-4">Co-founder of a crypto startup creating the Vetiver ($VETI) token.</p>
-                        </div>
-                        <div class="flex gap-2 flex-col items-end">
-                            <span class="px-3 py-1 border-2 border-ink rounded-full text-xs font-bold uppercase bg-white group-hover:-rotate-3 transition transform duration-300">Crypto</span>
-                        </div>
-                    </div>
-                </a>
-            </div>
-
-        </div>
-    </section>
-
-    <!-- NEW: Tools of the Trade (Arsenal) -->
-    <section class="py-12 md:py-20 border-y-2 border-ink bg-accent-yellow overflow-hidden">
-        <div class="marquee-container border-none text-ink">
-            <div class="marquee-content py-3 md:py-4 font-serif font-bold text-2xl md:text-4xl uppercase gap-6 md:gap-12">
-                <span class="flex items-center gap-6 md:gap-12">
-                    <span>React.js</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Laravel</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Flutter</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Tailwind</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Node.js</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Figma</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>MySQL</span> <span class="text-xl md:text-2xl">✸</span>
-                </span>
-                <span class="flex items-center gap-6 md:gap-12" aria-hidden="true">
-                    <span>React.js</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Laravel</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Flutter</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Tailwind</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Node.js</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>Figma</span> <span class="text-xl md:text-2xl">✸</span>
-                    <span>MySQL</span> <span class="text-xl md:text-2xl">✸</span>
-                </span>
-            </div>
-        </div>
-    </section>
-
-    <!-- Mini Projects -->
-    <section id="mini" class="py-32 px-4 md:px-12 bg-white relative overflow-hidden">
-        <div class="absolute top-0 left-0 w-full h-full opacity-5 pointer-events-none" style="background-image: radial-gradient(#2C2A25 1.5px, transparent 1.5px); background-size: 24px 24px;"></div>
-        
-        <div class="max-w-[90rem] mx-auto relative z-10">
-            <div class="mb-12 md:mb-20 flex flex-col md:flex-row justify-between items-start md:items-end gap-6 reveal-scale">
-                <div>
-                    <h2 class="font-serif text-3xl sm:text-4xl md:text-6xl text-ink inline-block hover:skew-x-3 transition-transform">The Laboratory</h2>
-                    <p class="mt-4 font-sans text-base md:text-lg text-ink/70 max-w-md">Personal explorations, experiments, and playful projects.</p>
-                </div>
-                <div class="w-20 h-20 md:w-24 md:h-24 border-2 border-ink rounded-full flex items-center justify-center bg-paper text-ink shadow-classic scroll-spin cursor-pointer shrink-0">
-                    <span class="font-serif italic font-bold text-sm md:text-base">Mini.</span>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 md:gap-8">
-                <!-- Mini Card 1 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/gpukyu.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JS</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">GPUKYU</h3>
-                    <p class="font-sans text-sm text-ink/70">A website for testing GPU performance with benchmark scores.</p>
-                </div>
-
-                <!-- Mini Card 2 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/nemonymus.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Node.js</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Nemonymus</h3>
-                    <p class="font-sans text-sm text-ink/70">Server-based WhatsApp bot with JSON-formatted database.</p>
-                </div>
-
-                <!-- Mini Card 3 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/gamemanagement.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">GameOne</h3>
-                    <p class="font-sans text-sm text-ink/70">Flutter app with features for managing multi-platform games.</p>
-                </div>
-
-                <!-- Mini Card 4 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/attendanceapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Absenter</h3>
-                    <p class="font-sans text-sm text-ink/70">Flutter-based employee management application using Firebase database.</p>
-                </div>
-
-                <!-- Mini Card 5 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/scanner.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">QueScanner</h3>
-                    <p class="font-sans text-sm text-ink/70">Flutter application for generating and scanning QR codes.</p>
-                </div>
-
-                <!-- Mini Card 6 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/newsapp.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Luxu News</h3>
-                    <p class="font-sans text-sm text-ink/70">Cross-platform news app with API integration for current information.</p>
-                </div>
-
-                <!-- Mini Card 8 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/deca.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-yellow text-ink border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Golang</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">LubiX CLI</h3>
-                    <p class="font-sans text-sm text-ink/70">CLI tool built in Go to support LubiX framework development workflow.</p>
-                </div>
-
-                <!-- Mini Card 9 -->
-                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
-                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
-                        <img src="/lubix.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
-                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">LubiX</div>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">LubiX Framework</h3>
-                    <p class="font-sans text-sm text-ink/70">Modern framework with JS frontend and PHP backend for rapid development.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
     <!-- Education Section -->
     <section id="education" class="py-32 px-4 md:px-12 bg-white border-t-2 border-ink relative overflow-hidden">
         <div class="absolute top-0 right-0 w-64 h-64 bg-accent-yellow/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
@@ -603,7 +872,7 @@
                 <!-- TK -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-6 transition-transform">
-                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2" loading="lazy">
+                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2">
                     </div>
                     <span class="text-accent-red font-serif italic text-sm mb-2 block">Kindergarten</span>
                     <h3 class="font-serif text-2xl mb-2">TKIT Balikpapan Islamic School</h3>
@@ -613,7 +882,7 @@
                 <!-- SD -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-100 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-6 transition-transform">
-                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2" loading="lazy">
+                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2">
                     </div>
                     <span class="text-accent-blue font-serif italic text-sm mb-2 block">Elementary School</span>
                     <h3 class="font-serif text-2xl mb-2">SD Islam Cahaya Ilmu</h3>
@@ -623,7 +892,7 @@
                 <!-- SMP -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-200 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform">
-                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2" loading="lazy">
+                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2">
                     </div>
                     <span class="text-accent-green font-serif italic text-sm mb-2 block">Junior High School</span>
                     <h3 class="font-serif text-2xl mb-2">SMP Al Madinah Surakarta</h3>
@@ -633,7 +902,7 @@
                 <!-- SMK -->
                 <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-300 group">
                     <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-12 transition-transform">
-                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2" loading="lazy">
+                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2">
                     </div>
                     <span class="text-accent-yellow font-serif italic text-sm mb-2 block">Vocational High School</span>
                     <h3 class="font-serif text-2xl mb-2">SMK IDN Boarding School Solo</h3>
@@ -666,10 +935,10 @@
                     <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-red/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/lombok1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/lombok1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/lombok2.png" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/lombok2.png" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
                 </div>
@@ -687,10 +956,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-green/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/alikhlas1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/alikhlas1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/alikhlas2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/alikhlas2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -712,10 +981,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-blue/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/istts1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/istts1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/istts2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/istts2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -741,10 +1010,10 @@
                     <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-yellow/20 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-full overflow-hidden w-1/2 shadow-classic bg-white p-2 aspect-square group-hover:-translate-y-2 group-hover:rotate-[10deg] transition-all duration-500 z-10">
-                            <img src="/devfest1.jpg" class="w-full h-full object-cover rounded-full mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/devfest1.jpg" class="w-full h-full object-cover rounded-full mix-blend-multiply filter sepia-[0.2]">
                         </div>
                         <div class="border-2 border-ink rounded-[100px_100px_0_0] overflow-hidden w-1/2 shadow-classic bg-white p-2 translate-y-8 group-hover:-translate-y-2 group-hover:-rotate-[5deg] transition-all duration-500 z-10">
-                            <img src="/istts1.jpg" class="w-full h-full object-cover rounded-[90px_90px_0_0] mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/istts1.jpg" class="w-full h-full object-cover rounded-[90px_90px_0_0] mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
                 </div>
@@ -762,10 +1031,10 @@
                     <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-red/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
-                            <img src="/klaten1.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/klaten1.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 translate-y-8 z-10">
-                            <img src="/klaten2.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]" loading="lazy">
+                            <img src="/klaten2.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
                     <div class="md:text-left reveal-right order-2 md:order-2">
@@ -795,7 +1064,7 @@
                     <div class="absolute -inset-4 border-2 border-paper rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 z-10"></div>
                     <div class="absolute -inset-4 border-2 border-accent-yellow rounded-[40px] -rotate-3 group-hover:-rotate-12 transition-transform duration-500 z-10"></div>
                     <div class="relative bg-paper rounded-[40px] overflow-hidden p-3 shadow-2xl z-20">
-                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500" loading="lazy">
+                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500">
                     </div>
                     
                     <svg class="absolute -bottom-10 -left-10 w-24 h-24 text-accent-red scroll-spin z-30" viewBox="0 0 100 100" fill="currentColor">
@@ -854,6 +1123,85 @@
         </div>
     </section>
 
+    <section id="testimonials" class="py-28 md:py-32 px-4 md:px-12 bg-paper border-y-2 border-ink overflow-hidden">
+        <div class="max-w-[80rem] mx-auto">
+            <div class="text-center mb-14 md:mb-20">
+                <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-ink mb-4 reveal-up">Word on the <span class="italic text-accent-red">Street</span></h2>
+                <p class="font-sans text-lg text-ink/70 max-w-2xl mx-auto reveal-up delay-100">A few kind words from people I've had the pleasure to work with.</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8">
+                <figure class="bg-white border-2 border-ink rounded-2xl p-6 md:p-8 shadow-classic playful-card reveal-flip text-left relative overflow-hidden">
+                    <div class="absolute -top-6 -left-6 w-20 h-20 rounded-full bg-accent-yellow border-2 border-ink"></div>
+                    <div class="relative">
+                        <div class="text-5xl font-serif text-ink/20 leading-none mb-4">“</div>
+                        <blockquote class="font-sans text-ink/80 text-lg leading-relaxed mb-6">Rakhan turns ideas into interfaces that feel alive. Fast execution, clean delivery, and great taste.</blockquote>
+                        <figcaption class="font-serif font-bold text-ink">— Teammate / Collaborator</figcaption>
+                    </div>
+                </figure>
+
+                <figure class="bg-white border-2 border-ink rounded-2xl p-6 md:p-8 shadow-classic playful-card reveal-flip delay-100 text-left relative overflow-hidden">
+                    <div class="absolute -top-6 -right-6 w-20 h-20 rounded-full bg-accent-green border-2 border-ink"></div>
+                    <div class="relative">
+                        <div class="text-5xl font-serif text-ink/20 leading-none mb-4">“</div>
+                        <blockquote class="font-sans text-ink/80 text-lg leading-relaxed mb-6">Strong fundamentals, but what stands out most is the polish. The details always feel intentional.</blockquote>
+                        <figcaption class="font-serif font-bold text-ink">— Mentor / Teacher</figcaption>
+                    </div>
+                </figure>
+
+                <figure class="bg-white border-2 border-ink rounded-2xl p-6 md:p-8 shadow-classic playful-card reveal-flip delay-200 text-left relative overflow-hidden">
+                    <div class="absolute -bottom-8 left-10 w-24 h-24 rounded-full bg-accent-red border-2 border-ink opacity-80"></div>
+                    <div class="relative">
+                        <div class="text-5xl font-serif text-ink/20 leading-none mb-4">“</div>
+                        <blockquote class="font-sans text-ink/80 text-lg leading-relaxed mb-6">Communicative, dependable, and results-driven. Exactly what you want when shipping real products.</blockquote>
+                        <figcaption class="font-serif font-bold text-ink">— Client / Stakeholder</figcaption>
+                    </div>
+                </figure>
+            </div>
+        </div>
+    </section>
+
+    <section id="faq" class="py-28 md:py-32 px-4 md:px-12 bg-white border-y-2 border-ink overflow-hidden">
+        <div class="max-w-[80rem] mx-auto">
+            <div class="text-center mb-14 md:mb-20">
+                <h2 class="font-serif text-4xl sm:text-5xl md:text-6xl text-ink mb-4 reveal-up">F.A.Q <span class="italic text-accent-green">(Questions)</span></h2>
+                <p class="font-sans text-lg text-ink/70 max-w-2xl mx-auto reveal-up delay-100">Quick answers for recruiters, clients, and curious humans.</p>
+            </div>
+
+            <div class="max-w-3xl mx-auto space-y-4">
+                <details class="group bg-paper border-2 border-ink rounded-2xl shadow-classic overflow-hidden reveal-flip">
+                    <summary class="cursor-pointer select-none px-6 py-5 flex items-center justify-between gap-6">
+                        <span class="font-serif text-xl md:text-2xl text-ink">Are you open for freelance projects?</span>
+                        <span class="w-10 h-10 rounded-full border-2 border-ink bg-white flex items-center justify-center group-open:bg-accent-yellow transition shrink-0">
+                            <i class="fa-solid fa-plus group-open:rotate-45 transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 font-sans text-ink/80 leading-relaxed">Yes. For the best fit, send a short brief (goal, timeline, and references) via the contact form.</div>
+                </details>
+
+                <details class="group bg-paper border-2 border-ink rounded-2xl shadow-classic overflow-hidden reveal-flip delay-100">
+                    <summary class="cursor-pointer select-none px-6 py-5 flex items-center justify-between gap-6">
+                        <span class="font-serif text-xl md:text-2xl text-ink">What tech stack do you feel strongest in?</span>
+                        <span class="w-10 h-10 rounded-full border-2 border-ink bg-white flex items-center justify-center group-open:bg-accent-yellow transition shrink-0">
+                            <i class="fa-solid fa-plus group-open:rotate-45 transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 font-sans text-ink/80 leading-relaxed">Frontend (React + Tailwind), mobile (Flutter), and backend (Laravel). I enjoy building end-to-end experiences.</div>
+                </details>
+
+                <details class="group bg-paper border-2 border-ink rounded-2xl shadow-classic overflow-hidden reveal-flip delay-200">
+                    <summary class="cursor-pointer select-none px-6 py-5 flex items-center justify-between gap-6">
+                        <span class="font-serif text-xl md:text-2xl text-ink">Can you work remotely?</span>
+                        <span class="w-10 h-10 rounded-full border-2 border-ink bg-white flex items-center justify-center group-open:bg-accent-yellow transition shrink-0">
+                            <i class="fa-solid fa-plus group-open:rotate-45 transition-transform"></i>
+                        </span>
+                    </summary>
+                    <div class="px-6 pb-6 font-sans text-ink/80 leading-relaxed">Yes. I'm comfortable with async communication, clear updates, and structured delivery.</div>
+                </details>
+            </div>
+        </div>
+    </section>
+
     <!-- Contact Form -->
     <section id="contact" class="py-20 md:py-32 px-4 md:px-12 relative overflow-hidden bg-white border-t-2 border-ink">
         <svg class="absolute top-10 left-10 w-32 h-32 text-ink/10 scroll-spin-slow" viewBox="0 0 200 200" fill="currentColor">
@@ -893,17 +1241,170 @@
         </div>
     </section>
 
-    <footer class="py-8 border-t-2 border-ink text-center font-sans text-ink bg-paper relative z-30">
-        <p class="font-bold flex items-center justify-center gap-2">
-            2026 Rakhan Ataya. Crafted with 
-            <svg class="w-4 h-4 text-accent-red animate-wobble-steps inline-block" viewBox="0 0 24 24" fill="currentColor">
-                <path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/>
-            </svg>
-            and classic logic.
-        </p>
+    <footer class="py-10 border-t-2 border-ink text-center font-sans text-ink bg-paper relative z-30">
+        <div class="flex items-center justify-center gap-4 mb-5">
+            <a href="https://github.com/rakhan17" target="_blank" rel="noopener noreferrer" aria-label="GitHub" class="w-12 h-12 rounded-full border-2 border-ink bg-white flex items-center justify-center hover:bg-accent-yellow transition shadow-classic hover:shadow-classic-hover">
+                <i class="fa-brands fa-github text-xl"></i>
+            </a>
+            <a href="http://linkedin.com/in/rakhan-ataya-70631a334/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" class="w-12 h-12 rounded-full border-2 border-ink bg-white flex items-center justify-center hover:bg-accent-blue transition shadow-classic hover:shadow-classic-hover">
+                <i class="fa-brands fa-linkedin-in text-xl"></i>
+            </a>
+            <a href="https://www.instagram.com/rakhnatthya/" target="_blank" rel="noopener noreferrer" aria-label="Instagram" class="w-12 h-12 rounded-full border-2 border-ink bg-white flex items-center justify-center hover:bg-accent-red transition shadow-classic hover:shadow-classic-hover">
+                <i class="fa-brands fa-instagram text-xl"></i>
+            </a>
+        </div>
     </footer>
 
     <script>
+        document.documentElement.style.overflow = 'hidden';
+
+        // 0. Retro Preloader
+        (function() {
+            const preloader = document.getElementById('preloader');
+            const percentEl = document.getElementById('preloader-percent');
+            const barEl = document.getElementById('preloader-bar');
+
+            if (!preloader || !percentEl || !barEl) {
+                document.documentElement.style.overflow = '';
+                return;
+            }
+
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            const duration = reduceMotion ? 250 : 900;
+            const start = performance.now();
+            let rafId;
+
+            function tick(now) {
+                const t = Math.min(1, (now - start) / duration);
+                const fast = 1 - Math.pow(1 - t, 4);
+                const pct = Math.round(fast * 100);
+                percentEl.textContent = `${pct}%`;
+                barEl.style.width = `${pct}%`;
+
+                if (t < 1) {
+                    rafId = requestAnimationFrame(tick);
+                } else {
+                    setTimeout(() => {
+                        preloader.classList.add('is-done');
+                        document.documentElement.style.overflow = '';
+                        setTimeout(() => {
+                            preloader.remove();
+                        }, 950);
+                    }, 180);
+                }
+            }
+
+            rafId = requestAnimationFrame(tick);
+
+            window.addEventListener('beforeunload', () => {
+                if (rafId) cancelAnimationFrame(rafId);
+            });
+        })();
+
+        // God-tier 1. Web Audio SFX + Mute/Unmute
+        const SFX = (function() {
+            let ctx = null;
+            let muted = false;
+            let unlocked = false;
+
+            function ensureContext() {
+                if (ctx) return ctx;
+                const AudioContext = window.AudioContext || window.webkitAudioContext;
+                if (!AudioContext) return null;
+                ctx = new AudioContext();
+                return ctx;
+            }
+
+            function unlock() {
+                if (unlocked) return;
+                const c = ensureContext();
+                if (!c) return;
+                const o = c.createOscillator();
+                const g = c.createGain();
+                g.gain.value = 0.0001;
+                o.connect(g);
+                g.connect(c.destination);
+                o.start();
+                o.stop(c.currentTime + 0.01);
+                unlocked = true;
+            }
+
+            function tone({ type = 'square', freq = 300, dur = 0.06, gain = 0.12, glideTo = null }) {
+                if (muted) return;
+                const c = ensureContext();
+                if (!c) return;
+                if (c.state === 'suspended') c.resume().catch(() => {});
+
+                const o = c.createOscillator();
+                const g = c.createGain();
+                const f = c.createBiquadFilter();
+                f.type = 'lowpass';
+                f.frequency.value = 2200;
+
+                o.type = type;
+                o.frequency.setValueAtTime(freq, c.currentTime);
+                if (glideTo !== null) {
+                    o.frequency.exponentialRampToValueAtTime(glideTo, c.currentTime + dur);
+                }
+
+                g.gain.setValueAtTime(0.0001, c.currentTime);
+                g.gain.exponentialRampToValueAtTime(gain, c.currentTime + 0.01);
+                g.gain.exponentialRampToValueAtTime(0.0001, c.currentTime + dur);
+
+                o.connect(f);
+                f.connect(g);
+                g.connect(c.destination);
+
+                o.start();
+                o.stop(c.currentTime + dur + 0.02);
+            }
+
+            function click() {
+                tone({ type: 'square', freq: 280, glideTo: 120, dur: 0.07, gain: 0.13 });
+                tone({ type: 'triangle', freq: 620, glideTo: 420, dur: 0.06, gain: 0.05 });
+            }
+
+            function swoosh() {
+                tone({ type: 'sawtooth', freq: 240, glideTo: 980, dur: 0.11, gain: 0.07 });
+            }
+
+            function pop() {
+                tone({ type: 'triangle', freq: 520, glideTo: 260, dur: 0.08, gain: 0.06 });
+            }
+
+            function setMuted(next) {
+                muted = !!next;
+                return muted;
+            }
+
+            function isMuted() {
+                return muted;
+            }
+
+            document.addEventListener('pointerdown', unlock, { once: true });
+            document.addEventListener('keydown', unlock, { once: true });
+
+            return { click, swoosh, pop, setMuted, isMuted };
+        })();
+
+        const muteBtn = document.getElementById('mute-btn');
+        const muteLabel = document.getElementById('mute-label');
+        if (muteBtn && muteLabel) {
+            muteBtn.addEventListener('click', () => {
+                const nextMuted = !SFX.isMuted();
+                SFX.setMuted(nextMuted);
+                muteBtn.setAttribute('aria-pressed', String(nextMuted));
+                muteBtn.setAttribute('aria-label', nextMuted ? 'Unmute sound effects' : 'Mute sound effects');
+                muteLabel.textContent = nextMuted ? 'SFX: OFF' : 'SFX: ON';
+                const icon = muteBtn.querySelector('i');
+                if (icon) {
+                    icon.classList.toggle('fa-volume-high', !nextMuted);
+                    icon.classList.toggle('fa-volume-xmark', nextMuted);
+                }
+                SFX.click();
+            });
+        }
+
         // 1. Scroll Progress Bar & Scroll-Linked Animations
         window.addEventListener('scroll', () => {
             const scrollPx = document.documentElement.scrollTop;
@@ -931,7 +1432,7 @@
         // 3. Advanced Reveal Animation (Intersection Observer)
         document.addEventListener("DOMContentLoaded", function() {
             const observerOptions = { root: null, rootMargin: '0px', threshold: 0.15 };
-            const observer = new IntersectionObserver((entries, observer) => {22
+            const observer = new IntersectionObserver((entries, observer) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
                         entry.target.classList.add('active');
@@ -992,6 +1493,8 @@
                 const icon = mobileMenuBtn.querySelector('i');
                 icon.classList.toggle('fa-bars');
                 icon.classList.toggle('fa-xmark');
+
+                SFX.click();
             });
 
             mobileMenu.querySelectorAll('a').forEach(link => {
@@ -1000,9 +1503,411 @@
                     const icon = mobileMenuBtn.querySelector('i');
                     icon.classList.add('fa-bars');
                     icon.classList.remove('fa-xmark');
+
+                    SFX.click();
                 });
             });
         }
+
+        // 7. Easter Egg: Click-to-spawn floating stars on empty space
+        const interactiveSelector = 'a, button, input, textarea, select, summary, details, label, [role="button"]';
+        document.addEventListener('click', (e) => {
+            if (e.target && e.target.closest && e.target.closest(interactiveSelector)) return;
+
+            const star = document.createElement('span');
+            star.className = 'easter-star';
+            star.textContent = '✸';
+
+            const colors = ['#E06D53', '#4A6B5D', '#E6C265', '#5C7C8A', '#2C2A25'];
+            star.style.color = colors[Math.floor(Math.random() * colors.length)];
+
+            const size = 18 + Math.floor(Math.random() * 24);
+            star.style.fontSize = `${size}px`;
+
+            const dx = (Math.random() * 140 - 70).toFixed(0) + 'px';
+            const dy = (-90 - Math.random() * 130).toFixed(0) + 'px';
+            const rot = (Math.random() * 240 - 120).toFixed(0) + 'deg';
+            star.style.setProperty('--dx', dx);
+            star.style.setProperty('--dy', dy);
+            star.style.setProperty('--rot', rot);
+
+            star.style.left = `${e.clientX}px`;
+            star.style.top = `${e.clientY}px`;
+            document.body.appendChild(star);
+            setTimeout(() => star.remove(), 950);
+
+            SFX.pop();
+        });
+
+        // 8. Magnetic "VIEW" cursor for project cards
+        (function() {
+            const cursor = document.getElementById('view-cursor');
+            if (!cursor) return;
+
+            let x = window.innerWidth / 2;
+            let y = window.innerHeight / 2;
+            let tx = x;
+            let ty = y;
+            let raf;
+
+            function animate() {
+                x += (tx - x) * 0.18;
+                y += (ty - y) * 0.18;
+                cursor.style.left = `${x}px`;
+                cursor.style.top = `${y}px`;
+                raf = requestAnimationFrame(animate);
+            }
+            raf = requestAnimationFrame(animate);
+
+            window.addEventListener('mousemove', (e) => {
+                tx = e.clientX;
+                ty = e.clientY;
+                if (cursor.classList.contains('is-active')) {
+                    const magnetTarget = e.target && e.target.closest ? e.target.closest('.project-card') : null;
+                    if (magnetTarget) {
+                        const r = magnetTarget.getBoundingClientRect();
+                        tx = r.left + r.width / 2;
+                        ty = r.top + r.height / 2;
+                    }
+                }
+            }, { passive: true });
+
+            const cards = document.querySelectorAll('.project-card');
+            cards.forEach((card) => {
+                card.addEventListener('mouseenter', () => cursor.classList.add('is-active'));
+                card.addEventListener('mouseleave', () => cursor.classList.remove('is-active'));
+            });
+
+            window.addEventListener('blur', () => cursor.classList.remove('is-active'));
+            window.addEventListener('beforeunload', () => {
+                if (raf) cancelAnimationFrame(raf);
+            });
+        })();
+
+        // God-tier 2. 3D Magnetic Parallax / Tilt on project cards
+        (function() {
+            const cards = document.querySelectorAll('.project-card');
+            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+            if (reduceMotion) return;
+
+            cards.forEach((card) => {
+                let hovering = false;
+                let lastSwoosh = 0;
+
+                function reset() {
+                    card.style.transform = '';
+                }
+
+                card.addEventListener('mouseenter', () => {
+                    hovering = true;
+                    const now = Date.now();
+                    if (now - lastSwoosh > 260) {
+                        SFX.swoosh();
+                        lastSwoosh = now;
+                    }
+                });
+
+                card.addEventListener('mouseleave', () => {
+                    hovering = false;
+                    card.style.transition = 'transform 260ms cubic-bezier(0.2, 1, 0.2, 1)';
+                    reset();
+                    setTimeout(() => {
+                        card.style.transition = '';
+                    }, 280);
+                });
+
+                card.addEventListener('mousemove', (e) => {
+                    if (!hovering) return;
+                    const r = card.getBoundingClientRect();
+                    const px = (e.clientX - r.left) / r.width;
+                    const py = (e.clientY - r.top) / r.height;
+                    const rx = (py - 0.5) * -10;
+                    const ry = (px - 0.5) * 12;
+                    const tz = 18;
+                    card.style.transform = `translate(-4px, -4px) scale(1.02) rotateX(${rx}deg) rotateY(${ry}deg) translateZ(${tz}px)`;
+                });
+            });
+        })();
+
+        // God-tier 3. Secret code "RAKHAN" -> open Snake mini-game
+        (function() {
+            const secret = 'RAKHAN';
+            let buffer = '';
+            const overlay = document.getElementById('secret-game');
+            const closeBtn = document.getElementById('secret-close');
+            const canvas = document.getElementById('snake');
+            if (!overlay || !closeBtn || !canvas) return;
+
+            const ctx = canvas.getContext('2d');
+            let running = false;
+            let raf = 0;
+            let last = 0;
+            let dir = { x: 1, y: 0 };
+            let nextDir = { x: 1, y: 0 };
+            const cell = 16;
+            const cols = Math.floor(canvas.width / cell);
+            const rows = Math.floor(canvas.height / cell);
+            let snake = [{ x: Math.floor(cols / 3), y: Math.floor(rows / 2) }];
+            let food = { x: Math.floor(cols * 0.7), y: Math.floor(rows * 0.5) };
+            let score = 0;
+
+            function rndFood() {
+                let x, y;
+                do {
+                    x = Math.floor(Math.random() * cols);
+                    y = Math.floor(Math.random() * rows);
+                } while (snake.some(s => s.x === x && s.y === y));
+                food = { x, y };
+            }
+
+            function reset() {
+                dir = { x: 1, y: 0 };
+                nextDir = { x: 1, y: 0 };
+                snake = [{ x: Math.floor(cols / 3), y: Math.floor(rows / 2) }];
+                score = 0;
+                rndFood();
+            }
+
+            function draw() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                ctx.fillStyle = '#F7F4ED';
+                ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                ctx.strokeStyle = 'rgba(44, 42, 37, 0.15)';
+                ctx.lineWidth = 1;
+                for (let x = 0; x <= cols; x++) {
+                    ctx.beginPath();
+                    ctx.moveTo(x * cell, 0);
+                    ctx.lineTo(x * cell, canvas.height);
+                    ctx.stroke();
+                }
+                for (let y = 0; y <= rows; y++) {
+                    ctx.beginPath();
+                    ctx.moveTo(0, y * cell);
+                    ctx.lineTo(canvas.width, y * cell);
+                    ctx.stroke();
+                }
+
+                ctx.fillStyle = '#E06D53';
+                ctx.fillRect(food.x * cell + 2, food.y * cell + 2, cell - 4, cell - 4);
+                ctx.strokeStyle = '#2C2A25';
+                ctx.lineWidth = 2;
+                ctx.strokeRect(food.x * cell + 2, food.y * cell + 2, cell - 4, cell - 4);
+
+                snake.forEach((s, i) => {
+                    ctx.fillStyle = i === 0 ? '#4A6B5D' : '#E6C265';
+                    ctx.fillRect(s.x * cell + 2, s.y * cell + 2, cell - 4, cell - 4);
+                    ctx.strokeStyle = '#2C2A25';
+                    ctx.lineWidth = 2;
+                    ctx.strokeRect(s.x * cell + 2, s.y * cell + 2, cell - 4, cell - 4);
+                });
+
+                ctx.fillStyle = '#2C2A25';
+                ctx.font = '800 18px Karla, sans-serif';
+                ctx.fillText(`Score: ${score}`, 14, 28);
+            }
+
+            function step(ts) {
+                if (!running) return;
+                if (!last) last = ts;
+                const dt = ts - last;
+                const tickMs = 90;
+                if (dt >= tickMs) {
+                    last = ts;
+                    dir = nextDir;
+                    const head = { x: snake[0].x + dir.x, y: snake[0].y + dir.y };
+                    head.x = (head.x + cols) % cols;
+                    head.y = (head.y + rows) % rows;
+
+                    if (snake.some(s => s.x === head.x && s.y === head.y)) {
+                        document.body.classList.add('page-shake');
+                        setTimeout(() => document.body.classList.remove('page-shake'), 460);
+                        SFX.click();
+                        reset();
+                    } else {
+                        snake.unshift(head);
+                        if (head.x === food.x && head.y === food.y) {
+                            score += 10;
+                            SFX.pop();
+                            rndFood();
+                        } else {
+                            snake.pop();
+                        }
+                    }
+                    draw();
+                }
+                raf = requestAnimationFrame(step);
+            }
+
+            function open() {
+                overlay.classList.add('is-open');
+                overlay.setAttribute('aria-hidden', 'false');
+                running = true;
+                last = 0;
+                reset();
+                draw();
+                raf = requestAnimationFrame(step);
+                SFX.swoosh();
+            }
+
+            function close() {
+                overlay.classList.remove('is-open');
+                overlay.setAttribute('aria-hidden', 'true');
+                running = false;
+                if (raf) cancelAnimationFrame(raf);
+                raf = 0;
+                SFX.click();
+            }
+
+            closeBtn.addEventListener('click', close);
+            overlay.addEventListener('click', (e) => {
+                if (e.target === overlay) close();
+            });
+            window.addEventListener('keydown', (e) => {
+                if (!overlay.classList.contains('is-open')) return;
+                if (e.key === 'Escape') close();
+            });
+
+            window.addEventListener('keydown', (e) => {
+                const key = (e.key || '').toUpperCase();
+                if (!/^[A-Z]$/.test(key)) return;
+                buffer = (buffer + key).slice(-secret.length);
+                if (buffer === secret) {
+                    document.body.classList.add('page-shake');
+                    setTimeout(() => document.body.classList.remove('page-shake'), 460);
+                    open();
+                    buffer = '';
+                }
+            });
+
+            window.addEventListener('keydown', (e) => {
+                if (!overlay.classList.contains('is-open')) return;
+                const k = e.key.toLowerCase();
+                if (k === 'arrowup' || k === 'w') {
+                    if (dir.y !== 1) nextDir = { x: 0, y: -1 };
+                } else if (k === 'arrowdown' || k === 's') {
+                    if (dir.y !== -1) nextDir = { x: 0, y: 1 };
+                } else if (k === 'arrowleft' || k === 'a') {
+                    if (dir.x !== 1) nextDir = { x: -1, y: 0 };
+                } else if (k === 'arrowright' || k === 'd') {
+                    if (dir.x !== -1) nextDir = { x: 1, y: 0 };
+                }
+            });
+        })();
+
+        // God-tier 4. Dynamic greeting: visitor country + local time in Indonesia
+        (function() {
+            const el = document.getElementById('dynamic-greeting');
+            if (!el) return;
+            const fmt = new Intl.DateTimeFormat('en-US', {
+                timeZone: 'Asia/Jakarta',
+                hour: 'numeric',
+                minute: '2-digit'
+            });
+
+            setText('');
+            setInterval(() => setText(el.dataset.country || ''), 30 * 1000);
+
+            fetch('https://ipapi.co/json/')
+                .then(r => r.ok ? r.json() : null)
+                .then(data => {
+                    const country = data && (data.country_name || data.country);
+                    if (country) {
+                        el.dataset.country = country;
+                        setText(country);
+                    }
+                })
+                .catch(() => {});
+        })();
+
+        // God-tier 6. Navigation Sound & Improved Audio Engine
+        (function() {
+            const navLinks = document.querySelectorAll('.nav-link-audio');
+            navLinks.forEach(link => {
+                link.addEventListener('mouseenter', () => {
+                    SFX.pop(); // Subtle feedback on hover
+                });
+                link.addEventListener('click', () => {
+                    SFX.click(); // Stronger feedback on click
+                });
+            });
+
+            // Footer Socials Audio
+            const footerIcons = document.querySelectorAll('footer a');
+            footerIcons.forEach(icon => {
+                icon.addEventListener('mouseenter', () => {
+                    SFX.tone({ type: 'sine', freq: 440, glideTo: 880, dur: 0.1, gain: 0.05 });
+                });
+            });
+
+            // Scrollspy Audio Integration
+            let lastSection = '';
+            window.addEventListener('scroll', () => {
+                const sections = document.querySelectorAll('section[id]');
+                let current = '';
+                sections.forEach(s => {
+                    if (window.scrollY >= s.offsetTop - 300) {
+                        current = s.id;
+                    }
+                });
+                if (current && current !== lastSection) {
+                    SFX.tone({ type: 'triangle', freq: 880, dur: 0.05, gain: 0.03 }); // "Tink" sound
+                    lastSection = current;
+                }
+            });
+        })();
+
+        // God-tier 5. Page transitions for Selected Works cards (animate, then open)
+        (function() {
+            const links = document.querySelectorAll('#works a[target="_blank"]');
+            if (!links.length) return;
+
+            function animateAndOpen(e) {
+                const a = e.currentTarget;
+                const card = a.querySelector('.project-card');
+                if (!card) return;
+
+                e.preventDefault();
+                const href = a.getAttribute('href');
+                if (!href) return;
+
+                const r = card.getBoundingClientRect();
+                const overlay = document.createElement('div');
+                overlay.style.position = 'fixed';
+                overlay.style.left = r.left + 'px';
+                overlay.style.top = r.top + 'px';
+                overlay.style.width = r.width + 'px';
+                overlay.style.height = r.height + 'px';
+                overlay.style.borderRadius = '24px';
+                overlay.style.background = '#fff';
+                overlay.style.border = '4px solid #2C2A25';
+                overlay.style.boxShadow = '12px 12px 0px 0px rgba(44, 42, 37, 1)';
+                overlay.style.zIndex = '10002';
+                overlay.style.transformOrigin = 'center';
+                overlay.style.transition = 'all 520ms cubic-bezier(0.2, 1, 0.2, 1)';
+                overlay.style.pointerEvents = 'none';
+                document.body.appendChild(overlay);
+
+                requestAnimationFrame(() => {
+                    overlay.style.left = '0px';
+                    overlay.style.top = '0px';
+                    overlay.style.width = '100vw';
+                    overlay.style.height = '100vh';
+                    overlay.style.borderRadius = '0px';
+                    overlay.style.boxShadow = '0px 0px 0px 0px rgba(44, 42, 37, 1)';
+                });
+
+                SFX.swoosh();
+
+                setTimeout(() => {
+                    window.open(href, '_blank', 'noopener,noreferrer');
+                    setTimeout(() => overlay.remove(), 220);
+                }, 480);
+            }
+
+            links.forEach(a => a.addEventListener('click', animateAndOpen));
+        })();
 
     const sections = document.querySelectorAll("section[id]");
     const navLinks = document.querySelectorAll("nav .hidden.md\\:flex a");
