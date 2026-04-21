@@ -774,6 +774,24 @@
                     <p class="font-sans text-sm text-ink/70">A website for testing GPU performance with benchmark scores.</p>
                 </div>
 
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/nemonymus.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Node.js</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Nemonymus</h3>
+                    <p class="font-sans text-sm text-ink/70">Server-based WhatsApp bot with JSON-formatted database.</p>
+                </div>
+
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/gamemanagement.jpeg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Flutter</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">GameOne</h3>
+                    <p class="font-sans text-sm text-ink/70">Flutter app with features for managing multi-platform games.</p>
+                </div>
+
                 <!-- Mini Card 4 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
@@ -1270,34 +1288,102 @@
             }
 
             const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const duration = reduceMotion ? 250 : 900;
-            const start = performance.now();
-            let rafId;
+            const imgs = Array.from(document.images || []);
+            const total = Math.max(1, imgs.length);
 
-            function tick(now) {
-                const t = Math.min(1, (now - start) / duration);
-                const fast = 1 - Math.pow(1 - t, 4);
-                const pct = Math.round(fast * 100);
-                percentEl.textContent = `${pct}%`;
-                barEl.style.width = `${pct}%`;
+            let doneCount = 0;
+            let targetPct = 0;
+            let shownPct = 0;
+            let rafId = 0;
+            let finished = false;
+            const maxWaitMs = 15000;
+            const startTs = performance.now();
 
-                if (t < 1) {
-                    rafId = requestAnimationFrame(tick);
-                } else {
-                    setTimeout(() => {
-                        preloader.classList.add('is-done');
-                        document.documentElement.style.overflow = '';
-                        setTimeout(() => {
-                            preloader.remove();
-                        }, 950);
-                    }, 180);
-                }
+            function setProgress(nextTargetPct) {
+                targetPct = Math.max(targetPct, Math.min(100, Math.round(nextTargetPct)));
             }
 
-            rafId = requestAnimationFrame(tick);
+            function markOneDone() {
+                doneCount += 1;
+                setProgress((doneCount / total) * 100);
+            }
+
+            function finish() {
+                if (finished) return;
+                finished = true;
+                setProgress(100);
+                const exitDelay = reduceMotion ? 50 : 180;
+                const removeDelay = reduceMotion ? 120 : 950;
+
+                setTimeout(() => {
+                    preloader.classList.add('is-done');
+                    document.documentElement.style.overflow = '';
+                    setTimeout(() => {
+                        preloader.remove();
+                    }, removeDelay);
+                }, exitDelay);
+            }
+
+            function animate() {
+                const now = performance.now();
+                if (!finished && now - startTs > maxWaitMs) {
+                    finish();
+                }
+
+                const ease = reduceMotion ? 0.35 : 0.14;
+                shownPct += (targetPct - shownPct) * ease;
+                const pctInt = Math.max(0, Math.min(100, Math.round(shownPct)));
+                percentEl.textContent = `${pctInt}%`;
+                barEl.style.width = `${pctInt}%`;
+
+                if (pctInt >= 100 && (finished || doneCount >= total)) {
+                    // Let finish() handle removal
+                }
+
+                rafId = requestAnimationFrame(animate);
+            }
+
+            // Prime progress
+            setProgress(0);
+
+            // Track image loading (load/error both count as done so we never get stuck)
+            imgs.forEach((img) => {
+                if (img.complete) {
+                    markOneDone();
+                    return;
+                }
+
+                const onDone = () => {
+                    img.removeEventListener('load', onDone);
+                    img.removeEventListener('error', onDone);
+                    markOneDone();
+                };
+                img.addEventListener('load', onDone, { passive: true });
+                img.addEventListener('error', onDone, { passive: true });
+
+                if (typeof img.decode === 'function') {
+                    img.decode().then(onDone).catch(onDone);
+                }
+            });
+
+            // If there are no images (or all already complete)
+            if (doneCount >= total) {
+                finish();
+            }
+
+            rafId = requestAnimationFrame(animate);
+
+            // When all are done, finish
+            const checkDone = setInterval(() => {
+                if (doneCount >= total) {
+                    clearInterval(checkDone);
+                    finish();
+                }
+            }, 50);
 
             window.addEventListener('beforeunload', () => {
                 if (rafId) cancelAnimationFrame(rafId);
+                clearInterval(checkDone);
             });
         })();
 
