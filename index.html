@@ -369,7 +369,7 @@
         .playful-card:hover { transform: translate(-6px, -6px) rotate(-1deg); box-shadow: 12px 12px 0px 0px rgba(44, 42, 37, 1); }
 
         /* =========================================================================
-           STOP-MOTION / PATAH-PATAH ANIMATIONS
+           STOP-MOTION / CHOPPY ANIMATIONS
            ========================================================================= */
         @keyframes wobble-steps {
             0% { transform: rotate(-10deg) translateY(0); }
@@ -452,7 +452,7 @@
             width: 100%;
         }
 
-        /* <!-- Progress Bar wonten Inggil --> */
+        /* <!-- Top Progress Bar --> */
         #scroll-progress {
             position: fixed; top: 0; left: 0; height: 6px; background: #E06D53; width: 0%; z-index: 9999;
             border-right: 2px solid #2C2A25; border-bottom: 2px solid #2C2A25;
@@ -554,7 +554,7 @@
     <!-- Hero Section -->
     <section class="min-h-screen pt-32 pb-20 flex flex-col justify-center items-center px-6 relative overflow-visible text-center">
         
-        <!-- Ornamen Interaktif Scroll (Kiri Atas) -->
+        <!-- Interactive Scroll Ornament (Top Left) -->
         <div class="absolute top-32 left-10 md:left-32 w-24 h-24 scroll-spin-slow">
             <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M50 5L61.8 35.5L95 38.2L69.6 59.8L77.3 91.8L50 74.5L22.7 91.8L30.4 59.8L5 38.2L38.2 35.5L50 5Z" fill="#E6C265" stroke="#2C2A25" stroke-width="4" stroke-linejoin="round"/>
@@ -564,7 +564,7 @@
             </svg>
         </div>
 
-        <!-- Ornamen Abstrak (Kanan Bawah) -->
+        <!-- Abstract Ornament (Bottom Right) -->
         <div class="absolute bottom-40 right-10 md:right-32 w-32 h-32 opacity-70 scroll-spin-reverse">
             <svg viewBox="0 0 200 200" fill="none" stroke="#4A6B5D" stroke-width="6" stroke-linecap="round">
                 <path d="M100 20 L100 180 M20 100 L180 100 M43 43 L157 157 M43 157 L157 43" stroke-dasharray="10 15"/>
@@ -629,6 +629,41 @@
             </div>
         </div>
     </div>
+
+    <!-- NEW: Services / Offerings -->
+    <section id="services" class="py-32 px-4 md:px-12 bg-white relative">
+        <div class="max-w-[80rem] mx-auto text-center">
+            <h2 class="font-serif text-5xl md:text-6xl text-ink mb-4 reveal-up">Craft & <span class="italic text-accent-green">Services</span></h2>
+            <p class="font-sans text-lg text-ink/70 max-w-xl mx-auto mb-20 reveal-up delay-100">How can I help you build your next digital masterpiece?</p>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
+                <!-- Service 1 -->
+                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip playful-card text-left">
+                    <div class="w-14 h-14 bg-accent-yellow border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
+                        <i class="fas fa-laptop-code text-ink text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-3">Frontend Magic</h3>
+                    <p class="font-sans text-ink/70">Building responsive, animated, and highly interactive user interfaces using modern web technologies like React and Tailwind CSS.</p>
+                </div>
+                <!-- Service 2 -->
+                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip delay-100 playful-card text-left">
+                    <div class="w-14 h-14 bg-accent-red border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
+                        <i class="fas fa-server text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-3">Backend Logic</h3>
+                    <p class="font-sans text-ink/70">Architecting robust and secure server-side logic, databases, and APIs primarily using Laravel and Node.js.</p>
+                </div>
+                <!-- Service 3 -->
+                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip delay-200 playful-card text-left">
+                    <div class="w-14 h-14 bg-accent-blue border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
+                        <i class="fas fa-mobile-screen-button text-white text-xl"></i>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-3">Mobile Apps</h3>
+                    <p class="font-sans text-ink/70">Crafting seamless cross-platform mobile applications for iOS and Android tailored with Flutter framework.</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Selected Works -->
     <section id="works" class="py-32 px-4 md:px-12 max-w-[90rem] mx-auto overflow-hidden relative border-t-2 border-ink border-dashed">
@@ -832,6 +867,139 @@
                     <p class="font-sans text-sm text-ink/70">CLI tool built in Go to support LubiX framework development workflow.</p>
                 </div>
 
+                
+                <!-- Mini Card 10 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/mangakamonster.jpg" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">React JS</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">MangakaMonster</h3>
+                    <p class="font-sans text-sm text-ink/70">An entertainment platform built with React JS, extensively utilizing APIs to fetch movies, anime, manga, donghua, and dracin data.</p>
+                </div>
+
+                <!-- Mini Card 11 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/grizzly.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Laravel 12</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Grizzly</h3>
+                    <p class="font-sans text-sm text-ink/70">A communication platform closely resembling Discord, built with Laravel 12 and Filament.</p>
+                </div>
+
+                
+                <!-- Mini Card 12 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/sds.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JavaScript</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Certificate Dummy Studio</h3>
+                    <p class="font-sans text-sm text-ink/70">A website to generate dummy certificates where you can customize the name and course taken. Built entirely with JavaScript.</p>
+                </div>
+
+                <!-- Mini Card 13 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/kurumi.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Node & Python</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Kurumi AI</h3>
+                    <p class="font-sans text-sm text-ink/70">An AI chatbot integrated with WhatsApp to provide a conversational AI experience, personalized as a virtual companion (waifu) for chatting and more.</p>
+                </div>
+
+                <!-- Mini Card 14 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/cycro.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">React JS</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">Cycro</h3>
+                    <p class="font-sans text-sm text-ink/70">A code generator platform powered by the Gemini API. Features a canvas-like chat interface to build, preview, and refine code interactively.</p>
+                </div>
+
+                
+                <!-- Mini Card 15 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/typerid.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Firebase</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Typer ID</h3>
+                    <p class="font-sans text-sm text-ink/70">A typing practice website to check CPS and race against opponents like Nitro Type. Uses Firebase for data storage and multiplayer features.</p>
+                </div>
+
+                <!-- Mini Card 16 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/cinestudio.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Three.JS</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Cinestudio</h3>
+                    <p class="font-sans text-sm text-ink/70">A 3D cinematic web app using Three.JS. Import 3D models, adjust poses, position cameras, set keyframes, and render/download your animations.</p>
+                </div>
+
+                <!-- Mini Card 17 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/psai.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Gemini API</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">PS AI</h3>
+                    <p class="font-sans text-sm text-ink/70">An advanced AI chat platform utilizing the Gemini API to think, analyze, and generate visuals and videos.</p>
+                </div>
+
+                <!-- Mini Card 18 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/shellsandbox.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JavaScript</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">ShellSandbox</h3>
+                    <p class="font-sans text-sm text-ink/70">A web-based Linux terminal sandbox built with JS. Practice Linux/FreeBSD/macOS commands, manage users, and manipulate directories.</p>
+                </div>
+
+                <!-- Mini Card 19 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/whoswolf.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-yellow border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">Firebase</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-yellow transition-colors">Who's Wolf?</h3>
+                    <p class="font-sans text-sm text-ink/70">An online multiplayer social deduction game like Werewolf with extended roles (Arsonist, Joker). Powered by Firebase for real-time gameplay.</p>
+                </div>
+
+                <!-- Mini Card 20 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/deepscan.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-red text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">HTML/JS</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-red transition-colors">Deepscan</h3>
+                    <p class="font-sans text-sm text-ink/70">A QR code generator built with HTML and JS. Create QR codes from links or text and customize them with a logo in the center.</p>
+                </div>
+
+                <!-- Mini Card 21 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-100 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/deepcalc.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-blue text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JavaScript</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-blue transition-colors">Deepcalc</h3>
+                    <p class="font-sans text-sm text-ink/70">An advanced multi-purpose calculator supporting standard math, temperatures, geometry (squares, cylinders), heat, degrees, and discounts.</p>
+                </div>
+
+                <!-- Mini Card 22 -->
+                <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
+                    <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
+                        <img src="/deepwheel.png" class="w-full h-full object-cover mix-blend-multiply filter sepia-[0.2]">
+                        <div class="absolute top-2 right-2 bg-accent-green text-white border-2 border-ink px-2 py-1 text-xs font-bold rounded-sm group-hover:animate-bounce-steps">JavaScript</div>
+                    </div>
+                    <h3 class="font-serif text-2xl mb-2 text-ink group-hover:text-accent-green transition-colors">Deepwheel</h3>
+                    <p class="font-sans text-sm text-ink/70">A customizable spinning wheel for random name picking. Adjust names, button text, background colors, themes, and spin speed.</p>
+                </div>
+
                 <!-- Mini Card 9 -->
                 <div class="bg-paper border-2 border-ink p-4 rounded-xl playful-card reveal-flip delay-200 group">
                     <div class="aspect-video rounded-lg overflow-hidden border-2 border-ink mb-4 bg-white relative">
@@ -845,92 +1013,7 @@
         </div>
     </section>
 
-    <!-- NEW: Services / Offerings -->
-    <section id="services" class="py-32 px-4 md:px-12 bg-white relative">
-        <div class="max-w-[80rem] mx-auto text-center">
-            <h2 class="font-serif text-5xl md:text-6xl text-ink mb-4 reveal-up">Craft & <span class="italic text-accent-green">Services</span></h2>
-            <p class="font-sans text-lg text-ink/70 max-w-xl mx-auto mb-20 reveal-up delay-100">How can I help you build your next digital masterpiece?</p>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
-                <!-- Service 1 -->
-                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip playful-card text-left">
-                    <div class="w-14 h-14 bg-accent-yellow border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
-                        <i class="fas fa-laptop-code text-ink text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">Frontend Magic</h3>
-                    <p class="font-sans text-ink/70">Building responsive, animated, and highly interactive user interfaces using modern web technologies like React and Tailwind CSS.</p>
-                </div>
-                <!-- Service 2 -->
-                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip delay-100 playful-card text-left">
-                    <div class="w-14 h-14 bg-accent-red border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
-                        <i class="fas fa-server text-white text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">Backend Logic</h3>
-                    <p class="font-sans text-ink/70">Architecting robust and secure server-side logic, databases, and APIs primarily using Laravel and Node.js.</p>
-                </div>
-                <!-- Service 3 -->
-                <div class="bg-paper border-2 border-ink p-6 md:p-8 rounded-2xl reveal-flip delay-200 playful-card text-left">
-                    <div class="w-14 h-14 bg-accent-blue border-2 border-ink rounded-full flex items-center justify-center mb-6 shadow-classic">
-                        <i class="fas fa-mobile-screen-button text-white text-xl"></i>
-                    </div>
-                    <h3 class="font-serif text-2xl mb-3">Mobile Apps</h3>
-                    <p class="font-sans text-ink/70">Crafting seamless cross-platform mobile applications for iOS and Android tailored with Flutter framework.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Education Section -->
-    <section id="education" class="py-32 px-4 md:px-12 bg-white border-t-2 border-ink relative overflow-hidden">
-        <div class="absolute top-0 right-0 w-64 h-64 bg-accent-yellow/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
-        <div class="max-w-[80rem] mx-auto relative z-10">
-            <h2 class="font-serif text-4xl md:text-6xl text-center mb-20 reveal-up">Academic <span class="italic text-accent-green">Path</span></h2>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-                <!-- TK -->
-                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up group">
-                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-6 transition-transform">
-                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2">
-                    </div>
-                    <span class="text-accent-red font-serif italic text-sm mb-2 block">Kindergarten</span>
-                    <h3 class="font-serif text-2xl mb-2">TKIT Balikpapan Islamic School</h3>
-                    <p class="font-sans text-sm text-ink/70">The first steps in my educational journey, building foundations in Balikpapan.</p>
-                </div>
-
-                <!-- SD -->
-                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-100 group">
-                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-6 transition-transform">
-                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2">
-                    </div>
-                    <span class="text-accent-blue font-serif italic text-sm mb-2 block">Elementary School</span>
-                    <h3 class="font-serif text-2xl mb-2">SD Islam Cahaya Ilmu</h3>
-                    <p class="font-sans text-sm text-ink/70">Formative years focused on core values and academic excellence.</p>
-                </div>
-
-                <!-- SMP -->
-                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-200 group">
-                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform">
-                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2">
-                    </div>
-                    <span class="text-accent-green font-serif italic text-sm mb-2 block">Junior High School</span>
-                    <h3 class="font-serif text-2xl mb-2">SMP Al Madinah Surakarta</h3>
-                    <p class="font-sans text-sm text-ink/70">Broadening horizons and discovering initial interests in Surakarta.</p>
-                </div>
-
-                <!-- SMK -->
-                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-300 group">
-                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-12 transition-transform">
-                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2">
-                    </div>
-                    <span class="text-accent-yellow font-serif italic text-sm mb-2 block">Vocational High School</span>
-                    <h3 class="font-serif text-2xl mb-2">SMK IDN Boarding School Solo</h3>
-                    <p class="font-sans text-sm text-ink/70">Specializing in Software Engineering and mastering the craft of development.</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Bageyan Pengalaman -->
+    <!-- Experience Section -->
     <section id="experience" class="py-20 md:py-32 px-4 md:px-12 max-w-[80rem] mx-auto overflow-hidden">
         <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl text-center mb-16 md:mb-32 text-ink reveal-scale px-4">Chapter & Verse</h2>
 
@@ -996,7 +1079,7 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 md:gap-20 items-center pl-16 md:pl-0">
-                    <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
+                    <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-blue/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[-4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
                             <img src="/istts1.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
@@ -1005,7 +1088,7 @@
                             <img src="/istts2.jpg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
-                    <div class="md:text-left reveal-right order-2 md:order-2">
+                    <div class="md:text-right reveal-left order-2 md:order-1">
                         <h4 class="font-serif text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent-blue transition-colors cursor-pointer">Google DevFest ISTTS</h4>
                         <p class="font-sans text-lg text-ink/70">Participated in Google's flagship event series, Google DevFest, held at ISTTS Surabaya to connect with the developer community.</p>
                     </div>
@@ -1021,11 +1104,11 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 md:gap-20 items-center pl-16 md:pl-0">
-                    <div class="md:text-right reveal-left order-2 md:order-1">
+                    <div class="md:text-left reveal-right order-2 md:order-2">
                         <h4 class="font-serif text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent-yellow transition-colors cursor-pointer">Google DevFest</h4>
                         <p class="font-sans text-lg text-ink/70">Participated in Google's flagship event series, Google DevFest, held across multiple locations in Surabaya to connect with the developer community.</p>
                     </div>
-                    <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
+                    <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
                         <div class="absolute -inset-4 bg-accent-yellow/20 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-full overflow-hidden w-1/2 shadow-classic bg-white p-2 aspect-square group-hover:-translate-y-2 group-hover:rotate-[10deg] transition-all duration-500 z-10">
                             <img src="/devfest1.jpg" class="w-full h-full object-cover rounded-full mix-blend-multiply filter sepia-[0.2]">
@@ -1046,7 +1129,7 @@
                 </div>
 
                 <div class="grid md:grid-cols-2 gap-8 md:gap-20 items-center pl-16 md:pl-0">
-                    <div class="flex gap-4 reveal-left order-1 md:order-1 relative">
+                    <div class="flex gap-4 reveal-right order-1 md:order-2 relative">
                         <div class="absolute -inset-4 bg-accent-red/10 rounded-2xl scale-0 group-hover:scale-100 transition-transform duration-500 z-0"></div>
                         <div class="border-2 border-ink rounded-xl overflow-hidden w-1/2 shadow-classic rotate-[4deg] group-hover:rotate-0 hover:-translate-y-2 transition-all duration-500 bg-white p-2 z-10">
                             <img src="/klaten1.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
@@ -1055,7 +1138,7 @@
                             <img src="/klaten2.jpeg" class="w-full aspect-square object-cover mix-blend-multiply filter sepia-[0.2]">
                         </div>
                     </div>
-                    <div class="md:text-left reveal-right order-2 md:order-2">
+                    <div class="md:text-right reveal-left order-2 md:order-1">
                         <h4 class="font-serif text-3xl md:text-4xl text-ink mb-4 group-hover:text-accent-red transition-colors cursor-pointer">IDN Mengajar</h4>
                         <p class="font-sans text-lg text-ink/70">Teaching IT at SMA Muhammadiyah 1 Klaten. Instructed students on programming basics using HTML and CSS.</p>
                     </div>
@@ -1065,50 +1148,58 @@
         </div>
     </section>
 
-    <!-- About Section -->
-    <section id="about" class="py-32 px-4 md:px-12 bg-ink text-paper border-y-2 border-ink overflow-hidden">
-        <div class="max-w-[80rem] mx-auto">
-            <div class="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-center">
-                
-                <div class="relative max-w-sm mx-auto lg:mx-0 reveal-flip group">
-                    <div class="absolute -top-12 right-10 w-16 h-16 animate-wobble-steps z-10 transition-transform group-hover:-translate-y-4">
-                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M10 100 Q 10 20 50 20 Q 90 20 90 100" fill="#4A6B5D" stroke="#F7F4ED" stroke-width="4"/>
-                            <circle cx="35" cy="50" r="5" fill="#F7F4ED" class="animate-blink-steps"/>
-                            <circle cx="65" cy="50" r="5" fill="#F7F4ED" class="animate-blink-steps"/>
-                        </svg>
+    <!-- Education Section -->
+    <section id="education" class="py-32 px-4 md:px-12 bg-white border-t-2 border-ink relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-64 h-64 bg-accent-yellow/10 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl"></div>
+        <div class="max-w-[80rem] mx-auto relative z-10">
+            <h2 class="font-serif text-4xl md:text-6xl text-center mb-20 reveal-up">Academic <span class="italic text-accent-green">Path</span></h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+                <!-- TK -->
+                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up group">
+                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-6 transition-transform">
+                        <img src="/TK.webp" alt="TKIT Balikpapan Islamic School" class="w-full h-full object-contain p-2">
                     </div>
-
-                    <div class="absolute -inset-4 border-2 border-paper rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 z-10"></div>
-                    <div class="absolute -inset-4 border-2 border-accent-yellow rounded-[40px] -rotate-3 group-hover:-rotate-12 transition-transform duration-500 z-10"></div>
-                    <div class="relative bg-paper rounded-[40px] overflow-hidden p-3 shadow-2xl z-20">
-                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500">
-                    </div>
-                    
-                    <svg class="absolute -bottom-10 -left-10 w-24 h-24 text-accent-red scroll-spin z-30" viewBox="0 0 100 100" fill="currentColor">
-                        <path d="M50 0L56 35L95 20L65 50L95 80L56 65L50 100L44 65L5 80L35 50L5 20L44 35L50 0Z"/>
-                    </svg>
+                    <span class="text-accent-red font-serif italic text-sm mb-2 block">Kindergarten</span>
+                    <h3 class="font-serif text-2xl mb-2">TKIT Balikpapan Islamic School</h3>
+                    <p class="font-sans text-sm text-ink/70">The first steps in my educational journey, building foundations in Balikpapan.</p>
                 </div>
 
-                <div class="reveal-right relative">
-                    <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl mb-6 md:mb-8 leading-tight">The Man Behind <br><span class="italic text-accent-yellow hover:text-accent-red transition-colors">The Code.</span></h2>
-                    
-                    <div class="font-sans text-lg md:text-xl leading-relaxed text-paper/80 space-y-6">
-                        <p class="drop-cap">
-                            urrently studying Software Engineering at SMK IDN Boarding School Solo. I don't just write code; I build solutions. By bridging the gap between robust backend logic and stunning UI/UX design, I deliver digital products that perform as brilliantly as they look.
-                        </p>
-                        <p>
-                            I believe the best websites are those that feel <span class="font-serif italic text-paper text-2xl animate-wobble-steps inline-block text-accent-yellow">alive</span>—blending the strict rules of programming with the boundless freedom of classic design.
-                        </p>
+                <!-- SD -->
+                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-100 group">
+                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-6 transition-transform">
+                        <img src="/SD.png" alt="SD Islam Cahaya Ilmu" class="w-full h-full object-contain p-2">
                     </div>
+                    <span class="text-accent-blue font-serif italic text-sm mb-2 block">Elementary School</span>
+                    <h3 class="font-serif text-2xl mb-2">SD Islam Cahaya Ilmu</h3>
+                    <p class="font-sans text-sm text-ink/70">Formative years focused on core values and academic excellence.</p>
                 </div>
 
+                <!-- SMP -->
+                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-200 group">
+                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:rotate-12 transition-transform">
+                        <img src="/SMP.jpeg" alt="SMP Al Madinah Surakarta" class="w-full h-full object-contain p-2">
+                    </div>
+                    <span class="text-accent-green font-serif italic text-sm mb-2 block">Junior High School</span>
+                    <h3 class="font-serif text-2xl mb-2">SMP Al Madinah Surakarta</h3>
+                    <p class="font-sans text-sm text-ink/70">Broadening horizons and discovering initial interests in Surakarta.</p>
+                </div>
+
+                <!-- SMK -->
+                <div class="bg-paper border-2 border-ink p-8 rounded-3xl playful-card reveal-up delay-300 group">
+                    <div class="w-20 h-20 bg-white border-2 border-ink rounded-2xl mb-6 flex items-center justify-center overflow-hidden group-hover:-rotate-12 transition-transform">
+                        <img src="/SMK.png" alt="SMK IDN Boarding School Solo" class="w-full h-full object-contain p-2">
+                    </div>
+                    <span class="text-accent-yellow font-serif italic text-sm mb-2 block">Vocational High School</span>
+                    <h3 class="font-serif text-2xl mb-2">SMK IDN Boarding School Solo</h3>
+                    <p class="font-sans text-sm text-ink/70">Specializing in Software Engineering and mastering the craft of development.</p>
+                </div>
             </div>
         </div>
     </section>
 
     <!-- NEW: The Process (Interactive Cards) -->
-    <section class="py-24 px-4 md:px-12 bg-white border-y-2 border-ink">
+    <section id="process" class="py-24 px-4 md:px-12 bg-white border-y-2 border-ink">
         <div class="max-w-[80rem] mx-auto">
             <h2 class="font-serif text-4xl md:text-6xl text-center mb-16 reveal-up">The <span class="italic text-accent-red">Process</span></h2>
             
@@ -1216,6 +1307,48 @@
                     </summary>
                     <div class="px-6 pb-6 font-sans text-ink/80 leading-relaxed">Yes. I'm comfortable with async communication, clear updates, and structured delivery.</div>
                 </details>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-4 md:px-12 bg-ink text-paper border-y-2 border-ink overflow-hidden">
+        <div class="max-w-[80rem] mx-auto">
+            <div class="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-center">
+                
+                <div class="relative max-w-sm mx-auto lg:mx-0 reveal-flip group">
+                    <div class="absolute -top-12 right-10 w-16 h-16 animate-wobble-steps z-10 transition-transform group-hover:-translate-y-4">
+                        <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M10 100 Q 10 20 50 20 Q 90 20 90 100" fill="#4A6B5D" stroke="#F7F4ED" stroke-width="4"/>
+                            <circle cx="35" cy="50" r="5" fill="#F7F4ED" class="animate-blink-steps"/>
+                            <circle cx="65" cy="50" r="5" fill="#F7F4ED" class="animate-blink-steps"/>
+                        </svg>
+                    </div>
+
+                    <div class="absolute -inset-4 border-2 border-paper rounded-[40px] rotate-6 group-hover:rotate-12 transition-transform duration-500 z-10"></div>
+                    <div class="absolute -inset-4 border-2 border-accent-yellow rounded-[40px] -rotate-3 group-hover:-rotate-12 transition-transform duration-500 z-10"></div>
+                    <div class="relative bg-paper rounded-[40px] overflow-hidden p-3 shadow-2xl z-20">
+                        <img src="/rakhan.jpeg" alt="Rakhan Ataya" class="w-full aspect-[3/4] object-cover rounded-[30px] filter grayscale group-hover:grayscale-0 transition duration-500">
+                    </div>
+                    
+                    <svg class="absolute -bottom-10 -left-10 w-24 h-24 text-accent-red scroll-spin z-30" viewBox="0 0 100 100" fill="currentColor">
+                        <path d="M50 0L56 35L95 20L65 50L95 80L56 65L50 100L44 65L5 80L35 50L5 20L44 35L50 0Z"/>
+                    </svg>
+                </div>
+
+                <div class="reveal-right relative">
+                    <h2 class="font-serif text-4xl sm:text-5xl md:text-7xl mb-6 md:mb-8 leading-tight">The Man Behind <br><span class="italic text-accent-yellow hover:text-accent-red transition-colors">The Code.</span></h2>
+                    
+                    <div class="font-sans text-lg md:text-xl leading-relaxed text-paper/80 space-y-6">
+                        <p class="drop-cap">
+                            Currently studying Software Engineering at SMK IDN Boarding School Solo. I don't just write code; I build solutions. By bridging the gap between robust backend logic and stunning UI/UX design, I deliver digital products that perform as brilliantly as they look.
+                        </p>
+                        <p>
+                            I believe the best websites are those that feel <span class="font-serif italic text-paper text-2xl animate-wobble-steps inline-block text-accent-yellow">alive</span>—blending the strict rules of programming with the boundless freedom of classic design.
+                        </p>
+                    </div>
+                </div>
+
             </div>
         </div>
     </section>
