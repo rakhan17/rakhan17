@@ -69,67 +69,7 @@
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.04'/%3E%3C/svg%3E");
         }
 
-        #preloader {
-            position: fixed;
-            inset: 0;
-            z-index: 10000;
-            background: #E6C265;
-            color: #2C2A25;
-            border-bottom: 6px solid #2C2A25;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: translateY(0);
-            transition: transform 0.9s cubic-bezier(0.77, 0, 0.175, 1);
-        }
-        #preloader.is-done {
-            transform: translateY(-110%);
-        }
-        #preloader .preloader-card {
-            background: #fff;
-            border: 4px solid #2C2A25;
-            border-radius: 28px;
-            box-shadow: 12px 12px 0px 0px rgba(44, 42, 37, 1);
-            padding: 28px;
-            width: min(720px, calc(100% - 32px));
-            text-align: center;
-        }
-        #preloader .preloader-title {
-            font-family: 'Fraunces', serif;
-            font-size: clamp(2rem, 6vw, 3.5rem);
-            line-height: 0.95;
-            margin-bottom: 16px;
-        }
-        #preloader .preloader-title .wobble {
-            display: inline-block;
-            animation: wobble-steps 0.6s steps(2) infinite;
-        }
-        #preloader .preloader-percent {
-            font-family: 'Fraunces', serif;
-            font-weight: 700;
-            font-size: clamp(2.5rem, 7vw, 4.25rem);
-            letter-spacing: -0.02em;
-        }
-        #preloader .preloader-sub {
-            margin-top: 10px;
-            font-family: 'Karla', sans-serif;
-            opacity: 0.75;
-        }
-        #preloader .preloader-meter {
-            margin-top: 18px;
-            height: 14px;
-            border-radius: 9999px;
-            border: 3px solid #2C2A25;
-            background: #F7F4ED;
-            overflow: hidden;
-        }
-        #preloader .preloader-meter > div {
-            height: 100%;
-            width: 0%;
-            background: #E06D53;
-            border-right: 3px solid #2C2A25;
-            transition: width 0.15s ease;
-        }
+
 
         #mute-toggle {
             position: fixed;
@@ -461,14 +401,7 @@
 </head>
 <body class="antialiased selection:bg-accent-yellow selection:text-ink">
 
-    <div id="preloader" aria-hidden="true">
-        <div class="preloader-card">
-            <div class="preloader-title"><span class="wobble">Loading</span> the craft…</div>
-            <div class="preloader-percent" id="preloader-percent">0%</div>
-            <div class="preloader-sub">Warming up the pixels. One moment.</div>
-            <div class="preloader-meter" aria-hidden="true"><div id="preloader-bar"></div></div>
-        </div>
-    </div>
+
 
     <div id="view-cursor" aria-hidden="true"><span class="label">VIEW</span></div>
 
@@ -618,20 +551,180 @@
                 </svg>
             </div>
         </div>
-        <div class="border-y-2 border-ink bg-white overflow-hidden py-4">
-            <div class="flex flex-wrap justify-center items-center gap-x-8 gap-y-4 px-4 text-sm md:text-base font-medium">
-                <span class="flex items-center">Frontend Dev <span class="text-accent-red not-italic px-3 animate-wobble-steps inline-block">✿</span></span>
-                <span class="flex items-center">UI/UX Design <span class="text-accent-green not-italic px-3 animate-wobble-steps inline-block delay-100">✿</span></span>
-                <span class="flex items-center">Backend Logic <span class="text-accent-yellow not-italic px-3 animate-wobble-steps inline-block delay-200">✿</span></span>
-                <span class="flex items-center">Creative Coding <span class="text-accent-blue not-italic px-3 animate-wobble-steps inline-block">✿</span></span>
-                <span class="flex items-center">Flutter <span class="text-accent-red not-italic px-3 animate-wobble-steps inline-block delay-100">✿</span></span>
-                <span class="flex items-center">Laravel <span class="text-accent-green not-italic px-3 animate-wobble-steps inline-block delay-200">✿</span></span>
+        <div class="border-y-[3px] border-ink bg-accent-yellow overflow-hidden py-5 relative flex w-full">
+            <style>
+                @keyframes marquee {
+                    0% { transform: translateX(0%); }
+                    100% { transform: translateX(-50%); }
+                }
+                .animate-marquee {
+                    animation: marquee 25s linear infinite;
+                    display: flex;
+                    width: max-content;
+                }
+            </style>
+            <div class="animate-marquee whitespace-nowrap font-serif text-xl md:text-2xl font-bold uppercase tracking-wide text-ink">
+                <div class="flex items-center gap-10 px-5">
+                    <span class="flex items-center">Frontend Dev <span class="text-accent-red not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">UI/UX Design <span class="text-accent-green not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                    <span class="flex items-center">Backend Logic <span class="text-paper not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">Creative Coding <span class="text-accent-blue not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                    <span class="flex items-center">Flutter <span class="text-accent-red not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">Laravel <span class="text-accent-green not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                </div>
+                <div class="flex items-center gap-10 px-5">
+                    <span class="flex items-center">Frontend Dev <span class="text-accent-red not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">UI/UX Design <span class="text-accent-green not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                    <span class="flex items-center">Backend Logic <span class="text-paper not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">Creative Coding <span class="text-accent-blue not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                    <span class="flex items-center">Flutter <span class="text-accent-red not-italic px-5 animate-spin-slow inline-block">✿</span></span>
+                    <span class="flex items-center">Laravel <span class="text-accent-green not-italic px-5 animate-spin-slow inline-block" style="animation-direction: reverse;">✿</span></span>
+                </div>
             </div>
         </div>
     </div>
 
     <!-- NEW: Services / Offerings -->
-    <section id="services" class="py-32 px-4 md:px-12 bg-white relative">
+    <section id="services" class="py-32 px-4 md:px-12 bg-white relative overflow-hidden">
+        <!-- Asset 4 (Pixel Art) -->
+        <div class="absolute top-10 right-10 md:right-32 w-24 md:w-32 opacity-80 pointer-events-none z-0 animate-bounce-steps">
+            <svg width="207" height="119" viewBox="0 0 207 119" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M22.1437 14.7622H14.7627V22.1432H22.1437V14.7622Z" fill="#4A6B5D"/>
+<path d="M14.7629 22.1431H7.38184V29.5241H14.7629V22.1431Z" fill="#4A6B5D"/>
+<path d="M7.38098 29.5239H0V36.9049H7.38098V29.5239Z" fill="#4A6B5D"/>
+<path d="M7.38098 36.9058H0V44.2868H7.38098V36.9058Z" fill="#4A6B5D"/>
+<path d="M7.38098 44.2871H0V51.6681H7.38098V44.2871Z" fill="#4A6B5D"/>
+<path d="M7.38098 51.668H0V59.049H7.38098V51.668Z" fill="#4A6B5D"/>
+<path d="M7.38098 59.0488H0V66.4298H7.38098V59.0488Z" fill="#4A6B5D"/>
+<path d="M7.38098 66.4302H0V73.8112H7.38098V66.4302Z" fill="#4A6B5D"/>
+<path d="M7.38098 73.811H0V81.192H7.38098V73.811Z" fill="#4A6B5D"/>
+<path d="M7.38098 81.1919H0V88.5729H7.38098V81.1919Z" fill="#4A6B5D"/>
+<path d="M14.7629 88.5732H7.38184V95.9542H14.7629V88.5732Z" fill="#4A6B5D"/>
+<path d="M22.1437 95.9551H14.7627V103.336H22.1437V95.9551Z" fill="#4A6B5D"/>
+<path d="M191.909 95.9551H184.528V103.336H191.909V95.9551Z" fill="#4A6B5D"/>
+<path d="M184.527 103.336H177.146V110.717H184.527V103.336Z" fill="#4A6B5D"/>
+<path d="M177.147 110.717H169.766V118.098H177.147V110.717Z" fill="#4A6B5D"/>
+<path d="M169.766 110.717H162.385V118.098H169.766V110.717Z" fill="#4A6B5D"/>
+<path d="M162.385 110.717H155.004V118.098H162.385V110.717Z" fill="#4A6B5D"/>
+<path d="M155.004 103.336H147.623V110.717H155.004V103.336Z" fill="#4A6B5D"/>
+<path d="M147.623 95.9551H140.242V103.336H147.623V95.9551Z" fill="#4A6B5D"/>
+<path d="M140.241 88.5732H132.86V95.9542H140.241V88.5732Z" fill="#4A6B5D"/>
+<path d="M132.859 88.5732H125.479V95.9542H132.859V88.5732Z" fill="#4A6B5D"/>
+<path d="M125.479 88.5732H118.098V95.9542H125.479V88.5732Z" fill="#4A6B5D"/>
+<path d="M118.098 88.5732H110.717V95.9542H118.098V88.5732Z" fill="#4A6B5D"/>
+<path d="M110.717 88.5732H103.336V95.9542H110.717V88.5732Z" fill="#4A6B5D"/>
+<path d="M103.336 88.5732H95.9551V95.9542H103.336V88.5732Z" fill="#4A6B5D"/>
+<path d="M95.9552 88.5732H88.5742V95.9542H95.9552V88.5732Z" fill="#4A6B5D"/>
+<path d="M199.29 88.5732H191.909V95.9542H199.29V88.5732Z" fill="#4A6B5D"/>
+<path d="M206.672 81.1919H199.291V88.5729H206.672V81.1919Z" fill="#4A6B5D"/>
+<path d="M206.672 73.811H199.291V81.192H206.672V73.811Z" fill="#4A6B5D"/>
+<path d="M206.672 66.4302H199.291V73.8112H206.672V66.4302Z" fill="#4A6B5D"/>
+<path d="M206.672 59.0488H199.291V66.4298H206.672V59.0488Z" fill="#4A6B5D"/>
+<path d="M206.672 51.668H199.291V59.049H206.672V51.668Z" fill="#4A6B5D"/>
+<path d="M206.672 44.2871H199.291V51.6681H206.672V44.2871Z" fill="#4A6B5D"/>
+<path d="M206.672 36.9058H199.291V44.2868H206.672V36.9058Z" fill="#4A6B5D"/>
+<path d="M206.672 29.5249H199.291V36.9059H206.672V29.5249Z" fill="#4A6B5D"/>
+<path d="M199.29 22.1431H191.909V29.5241H199.29V22.1431Z" fill="#4A6B5D"/>
+<path d="M191.909 14.7622H184.528V22.1432H191.909V14.7622Z" fill="#4A6B5D"/>
+<path d="M29.5255 103.336H22.1445V110.717H29.5255V103.336Z" fill="#4A6B5D"/>
+<path d="M36.9064 110.717H29.5254V118.098H36.9064V110.717Z" fill="#4A6B5D"/>
+<path d="M44.2872 110.717H36.9062V118.098H44.2872V110.717Z" fill="#4A6B5D"/>
+<path d="M51.6681 110.717H44.2871V118.098H51.6681V110.717Z" fill="#4A6B5D"/>
+<path d="M59.049 103.336H51.668V110.717H59.049V103.336Z" fill="#4A6B5D"/>
+<path d="M66.4299 95.9551H59.0488V103.336H66.4299V95.9551Z" fill="#4A6B5D"/>
+<path d="M73.8107 88.5732H66.4297V95.9542H73.8107V88.5732Z" fill="#4A6B5D"/>
+<path d="M81.1935 88.5732H73.8125V95.9542H81.1935V88.5732Z" fill="#4A6B5D"/>
+<path d="M129.17 29.5249H121.789V36.9059H129.17V29.5249Z" fill="#4A6B5D"/>
+<path d="M114.408 29.5249H107.027V36.9059H114.408V29.5249Z" fill="#4A6B5D"/>
+<path d="M99.6447 29.5249H92.2637V36.9059H99.6447V29.5249Z" fill="#4A6B5D"/>
+<path d="M84.8831 29.5239H77.502V36.9049H84.8831V29.5239Z" fill="#4A6B5D"/>
+<path d="M88.5743 88.5732H81.1934V95.9542H88.5743V88.5732Z" fill="#4A6B5D"/>
+<path d="M14.7629 81.1919H7.38184V88.5729H14.7629V81.1919Z" fill="#2C2A25"/>
+<path d="M22.1437 88.5732H14.7627V95.9542H22.1437V88.5732Z" fill="#2C2A25"/>
+<path d="M191.909 88.5732H184.528V95.9542H191.909V88.5732Z" fill="#2C2A25"/>
+<path d="M184.527 95.9551H177.146V103.336H184.527V95.9551Z" fill="#2C2A25"/>
+<path d="M177.147 103.336H169.766V110.717H177.147V103.336Z" fill="#2C2A25"/>
+<path d="M169.766 103.336H162.385V110.717H169.766V103.336Z" fill="#2C2A25"/>
+<path d="M162.385 103.336H155.004V110.717H162.385V103.336Z" fill="#2C2A25"/>
+<path d="M155.004 95.9551H147.623V103.336H155.004V95.9551Z" fill="#2C2A25"/>
+<path d="M147.623 88.5732H140.242V95.9542H147.623V88.5732Z" fill="#2C2A25"/>
+<path d="M140.241 81.1919H132.86V88.5729H140.241V81.1919Z" fill="#2C2A25"/>
+<path d="M132.859 81.1919H125.479V88.5729H132.859V81.1919Z" fill="#2C2A25"/>
+<path d="M125.479 81.1919H118.098V88.5729H125.479V81.1919Z" fill="#2C2A25"/>
+<path d="M118.098 81.1919H110.717V88.5729H118.098V81.1919Z" fill="#2C2A25"/>
+<path d="M110.717 81.1919H103.336V88.5729H110.717V81.1919Z" fill="#2C2A25"/>
+<path d="M103.336 81.1919H95.9551V88.5729H103.336V81.1919Z" fill="#2C2A25"/>
+<path d="M95.9552 81.1919H88.5742V88.5729H95.9552V81.1919Z" fill="#2C2A25"/>
+<path d="M199.29 81.1919H191.909V88.5729H199.29V81.1919Z" fill="#2C2A25"/>
+<path d="M29.5255 95.9551H22.1445V103.336H29.5255V95.9551Z" fill="#2C2A25"/>
+<path d="M36.9064 103.336H29.5254V110.717H36.9064V103.336Z" fill="#2C2A25"/>
+<path d="M44.2872 103.336H36.9062V110.717H44.2872V103.336Z" fill="#2C2A25"/>
+<path d="M51.6681 103.336H44.2871V110.717H51.6681V103.336Z" fill="#2C2A25"/>
+<path d="M59.049 95.9551H51.668V103.336H59.049V95.9551Z" fill="#2C2A25"/>
+<path d="M66.4299 88.5732H59.0488V95.9542H66.4299V88.5732Z" fill="#2C2A25"/>
+<path d="M73.8107 81.1919H66.4297V88.5729H73.8107V81.1919Z" fill="#2C2A25"/>
+<path d="M81.1935 81.1919H73.8125V88.5729H81.1935V81.1919Z" fill="#2C2A25"/>
+<path d="M88.5743 81.1919H81.1934V88.5729H88.5743V81.1919Z" fill="#2C2A25"/>
+<path d="M44.2872 44.2871H36.9062V51.6681H44.2872V44.2871Z" fill="#4A6B5D"/>
+<path d="M51.6681 51.668H44.2871V59.049H51.6681V51.668Z" fill="#4A6B5D"/>
+<path d="M44.2872 59.0488H36.9062V66.4298H44.2872V59.0488Z" fill="#4A6B5D"/>
+<path d="M36.9064 51.668H29.5254V59.049H36.9064V51.668Z" fill="#4A6B5D"/>
+<path d="M162.385 44.2871H155.004V51.6681H162.385V44.2871Z" fill="#4A6B5D"/>
+<path d="M169.766 51.668H162.385V59.049H169.766V51.668Z" fill="#4A6B5D"/>
+<path d="M162.385 59.0488H155.004V66.4298H162.385V59.0488Z" fill="#4A6B5D"/>
+<path d="M155.004 51.668H147.623V59.049H155.004V51.668Z" fill="#4A6B5D"/>
+<path d="M29.5255 7.38086H22.1445V14.7619H29.5255V7.38086Z" fill="#4A6B5D"/>
+<path d="M36.9064 7.38086H29.5254V14.7619H36.9064V7.38086Z" fill="#4A6B5D"/>
+<path d="M44.2872 7.38086H36.9062V14.7619H44.2872V7.38086Z" fill="#4A6B5D"/>
+<path d="M51.6681 7.38086H44.2871V14.7619H51.6681V7.38086Z" fill="#4A6B5D"/>
+<path d="M59.049 0H51.668V7.381H59.049V0Z" fill="#4A6B5D"/>
+<path d="M66.4299 0H59.0488V7.381H66.4299V0Z" fill="#4A6B5D"/>
+<path d="M73.8107 0H66.4297V7.381H73.8107V0Z" fill="#4A6B5D"/>
+<path d="M81.1935 7.38086H73.8125V14.7619H81.1935V7.38086Z" fill="#4A6B5D"/>
+<path d="M88.5743 7.38086H81.1934V14.7619H88.5743V7.38086Z" fill="#4A6B5D"/>
+<path d="M95.9552 7.38086H88.5742V14.7619H95.9552V7.38086Z" fill="#4A6B5D"/>
+<path d="M103.336 7.38086H95.9551V14.7619H103.336V7.38086Z" fill="#4A6B5D"/>
+<path d="M110.717 7.38086H103.336V14.7619H110.717V7.38086Z" fill="#4A6B5D"/>
+<path d="M118.098 7.38086H110.717V14.7619H118.098V7.38086Z" fill="#4A6B5D"/>
+<path d="M125.479 7.38086H118.098V14.7619H125.479V7.38086Z" fill="#4A6B5D"/>
+<path d="M132.859 7.38086H125.479V14.7619H132.859V7.38086Z" fill="#4A6B5D"/>
+<path d="M140.241 0H132.86V7.381H140.241V0Z" fill="#4A6B5D"/>
+<path d="M147.623 0H140.242V7.381H147.623V0Z" fill="#4A6B5D"/>
+<path d="M155.004 0H147.623V7.381H155.004V0Z" fill="#4A6B5D"/>
+<path d="M162.385 7.38086H155.004V14.7619H162.385V7.38086Z" fill="#4A6B5D"/>
+<path d="M169.766 7.38086H162.385V14.7619H169.766V7.38086Z" fill="#4A6B5D"/>
+<path d="M177.147 7.38086H169.766V14.7619H177.147V7.38086Z" fill="#4A6B5D"/>
+<path d="M184.527 7.38086H177.146V14.7619H184.527V7.38086Z" fill="#4A6B5D"/>
+<g opacity="0.4">
+<path d="M22.1437 22.1431H14.7627V29.5241H22.1437V22.1431Z" fill="#2C2A25"/>
+<path d="M14.7629 29.5239H7.38184V36.9049H14.7629V29.5239Z" fill="#2C2A25"/>
+<path d="M199.29 29.5239H191.909V36.9049H199.29V29.5239Z" fill="#2C2A25"/>
+<path d="M191.908 22.1431H184.527V29.5241H191.908V22.1431Z" fill="#2C2A25"/>
+<path d="M29.5245 14.7617H22.1436V22.1427H29.5245V14.7617Z" fill="#2C2A25"/>
+<path d="M36.9064 14.7617H29.5254V22.1427H36.9064V14.7617Z" fill="#2C2A25"/>
+<path d="M44.2872 14.7617H36.9062V22.1427H44.2872V14.7617Z" fill="#2C2A25"/>
+<path d="M51.6681 14.7617H44.2871V22.1427H51.6681V14.7617Z" fill="#2C2A25"/>
+<path d="M59.049 7.38086H51.668V14.7619H59.049V7.38086Z" fill="#2C2A25"/>
+<path d="M66.4299 7.38086H59.0488V14.7619H66.4299V7.38086Z" fill="#2C2A25"/>
+<path d="M73.8107 7.38086H66.4297V14.7619H73.8107V7.38086Z" fill="#2C2A25"/>
+<path d="M81.1925 14.7617H73.8115V22.1427H81.1925V14.7617Z" fill="#2C2A25"/>
+<path d="M88.5743 14.7617H81.1934V22.1427H88.5743V14.7617Z" fill="#2C2A25"/>
+<path d="M95.9552 14.7617H88.5742V22.1427H95.9552V14.7617Z" fill="#2C2A25"/>
+<path d="M103.336 14.7617H95.9551V22.1427H103.336V14.7617Z" fill="#2C2A25"/>
+<path d="M110.717 14.7617H103.336V22.1427H110.717V14.7617Z" fill="#2C2A25"/>
+<path d="M118.098 14.7617H110.717V22.1427H118.098V14.7617Z" fill="#2C2A25"/>
+<path d="M125.479 14.7617H118.098V22.1427H125.479V14.7617Z" fill="#2C2A25"/>
+<path d="M132.859 14.7617H125.479V22.1427H132.859V14.7617Z" fill="#2C2A25"/>
+<path d="M140.24 7.38086H132.859V14.7619H140.24V7.38086Z" fill="#2C2A25"/>
+<path d="M147.623 7.38086H140.242V14.7619H147.623V7.38086Z" fill="#2C2A25"/>
+<path d="M155.004 7.38086H147.623V14.7619H155.004V7.38086Z" fill="#2C2A25"/>
+<path d="M162.385 14.7617H155.004V22.1427H162.385V14.7617Z" fill="#2C2A25"/>
+<path d="M169.766 14.7617H162.385V22.1427H169.766V14.7617Z" fill="#2C2A25"/>
+<path d="M177.147 14.7617H169.766V22.1427H177.147V14.7617Z" fill="#2C2A25"/>
+<path d="M184.527 14.7617H177.146V22.1427H184.527V14.7617Z" fill="#2C2A25"/>
+</g>
+</svg>
+        </div>
         <div class="max-w-[80rem] mx-auto text-center">
             <h2 class="font-serif text-5xl md:text-6xl text-ink mb-4 reveal-up">Craft & <span class="italic text-accent-green">Services</span></h2>
             <p class="font-sans text-lg text-ink/70 max-w-xl mx-auto mb-20 reveal-up delay-100">How can I help you build your next digital masterpiece?</p>
@@ -1312,7 +1405,252 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-32 px-4 md:px-12 bg-ink text-paper border-y-2 border-ink overflow-hidden">
+    <section id="about" class="relative py-32 px-4 md:px-12 bg-ink text-paper border-y-2 border-ink overflow-hidden">
+        <!-- Asset 3 (Illustration) -->
+        <div class="absolute bottom-10 right-10 w-32 md:w-48 opacity-30 hover:opacity-100 hover:-rotate-12 transition-all duration-500 z-0 animate-wobble-steps-slow">
+            <svg width="257" height="278" viewBox="0 0 257 278" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M87.474 0H6.98505C3.12705 0 0 3.127 0 6.985V183.981C0 187.839 3.12705 190.966 6.98505 190.966H249.956C253.814 190.966 256.941 187.839 256.941 183.981V26.303C256.941 22.445 253.814 19.318 249.956 19.318H100.473L93.876 4.192C92.766 1.646 90.252 0 87.474 0Z" fill="#E06D53"/>
+<path d="M256.941 50.542H0V171.192H256.941V50.542Z" fill="#2C2A25"/>
+<mask id="mask0_664_696" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="0" y="50" width="257" height="122">
+<path d="M256.941 50.542H0V171.192H256.941V50.542Z" fill="#F7F4ED"/>
+</mask>
+<g mask="url(#mask0_664_696)">
+<g opacity="0.37">
+<path d="M9.10834 60.6021H-3.38867V73.099H9.10834V60.6021Z" fill="#2C2A25"/>
+<path d="M21.6044 48.105H9.10742V60.602H21.6044V48.105Z" fill="#2C2A25"/>
+<path d="M34.1015 60.6021H21.6045V73.099H34.1015V60.6021Z" fill="#2C2A25"/>
+<path d="M46.5976 48.105H34.1006V60.602H46.5976V48.105Z" fill="#2C2A25"/>
+<path d="M59.0947 60.6021H46.5977V73.099H59.0947V60.6021Z" fill="#2C2A25"/>
+<path d="M71.5917 48.105H59.0947V60.602H71.5917V48.105Z" fill="#2C2A25"/>
+<path d="M84.0888 60.6021H71.5918V73.099H84.0888V60.6021Z" fill="#2C2A25"/>
+<path d="M96.5858 48.105H84.0889V60.602H96.5858V48.105Z" fill="#2C2A25"/>
+<path d="M109.083 60.6021H96.5859V73.099H109.083V60.6021Z" fill="#2C2A25"/>
+<path d="M121.58 48.105H109.083V60.602H121.58V48.105Z" fill="#2C2A25"/>
+<path d="M134.077 60.6021H121.58V73.099H134.077V60.6021Z" fill="#2C2A25"/>
+<path d="M146.574 48.105H134.077V60.602H146.574V48.105Z" fill="#2C2A25"/>
+<path d="M159.071 60.6021H146.574V73.099H159.071V60.6021Z" fill="#2C2A25"/>
+<path d="M171.567 48.105H159.07V60.602H171.567V48.105Z" fill="#2C2A25"/>
+<path d="M184.063 60.6021H171.566V73.099H184.063V60.6021Z" fill="#2C2A25"/>
+<path d="M196.56 48.105H184.063V60.602H196.56V48.105Z" fill="#2C2A25"/>
+<path d="M209.058 60.6021H196.561V73.099H209.058V60.6021Z" fill="#2C2A25"/>
+<path d="M221.555 48.105H209.058V60.602H221.555V48.105Z" fill="#2C2A25"/>
+<path d="M234.052 60.6021H221.555V73.099H234.052V60.6021Z" fill="#2C2A25"/>
+<path d="M246.549 48.105H234.052V60.602H246.549V48.105Z" fill="#2C2A25"/>
+<path d="M259.046 60.6021H246.549V73.099H259.046V60.6021Z" fill="#2C2A25"/>
+<path d="M9.10834 85.5957H-3.38867V98.0927H9.10834V85.5957Z" fill="#2C2A25"/>
+<path d="M21.6044 73.0991H9.10742V85.5961H21.6044V73.0991Z" fill="#2C2A25"/>
+<path d="M34.1015 85.5957H21.6045V98.0927H34.1015V85.5957Z" fill="#2C2A25"/>
+<path d="M46.5976 73.0991H34.1006V85.5961H46.5976V73.0991Z" fill="#2C2A25"/>
+<path d="M59.0947 85.5957H46.5977V98.0927H59.0947V85.5957Z" fill="#2C2A25"/>
+<path d="M71.5917 73.0991H59.0947V85.5961H71.5917V73.0991Z" fill="#2C2A25"/>
+<path d="M84.0888 85.5957H71.5918V98.0927H84.0888V85.5957Z" fill="#2C2A25"/>
+<path d="M96.5858 73.0991H84.0889V85.5961H96.5858V73.0991Z" fill="#2C2A25"/>
+<path d="M109.083 85.5957H96.5859V98.0927H109.083V85.5957Z" fill="#2C2A25"/>
+<path d="M121.58 73.0991H109.083V85.5961H121.58V73.0991Z" fill="#2C2A25"/>
+<path d="M134.077 85.5957H121.58V98.0927H134.077V85.5957Z" fill="#2C2A25"/>
+<path d="M146.574 73.0991H134.077V85.5961H146.574V73.0991Z" fill="#2C2A25"/>
+<path d="M159.071 85.5957H146.574V98.0927H159.071V85.5957Z" fill="#2C2A25"/>
+<path d="M171.567 73.0991H159.07V85.5961H171.567V73.0991Z" fill="#2C2A25"/>
+<path d="M184.063 85.5957H171.566V98.0927H184.063V85.5957Z" fill="#2C2A25"/>
+<path d="M196.56 73.0991H184.063V85.5961H196.56V73.0991Z" fill="#2C2A25"/>
+<path d="M209.058 85.5957H196.561V98.0927H209.058V85.5957Z" fill="#2C2A25"/>
+<path d="M221.555 73.0991H209.058V85.5961H221.555V73.0991Z" fill="#2C2A25"/>
+<path d="M234.052 85.5957H221.555V98.0927H234.052V85.5957Z" fill="#2C2A25"/>
+<path d="M246.549 73.0991H234.052V85.5961H246.549V73.0991Z" fill="#2C2A25"/>
+<path d="M259.046 85.5957H246.549V98.0927H259.046V85.5957Z" fill="#2C2A25"/>
+<path d="M9.10834 110.59H-3.38867V123.087H9.10834V110.59Z" fill="#2C2A25"/>
+<path d="M21.6044 98.0928H9.10742V110.59H21.6044V98.0928Z" fill="#2C2A25"/>
+<path d="M34.1015 110.59H21.6045V123.087H34.1015V110.59Z" fill="#2C2A25"/>
+<path d="M46.5976 98.0928H34.1006V110.59H46.5976V98.0928Z" fill="#2C2A25"/>
+<path d="M59.0947 110.59H46.5977V123.087H59.0947V110.59Z" fill="#2C2A25"/>
+<path d="M71.5917 98.0928H59.0947V110.59H71.5917V98.0928Z" fill="#2C2A25"/>
+<path d="M84.0888 110.59H71.5918V123.087H84.0888V110.59Z" fill="#2C2A25"/>
+<path d="M96.5858 98.0928H84.0889V110.59H96.5858V98.0928Z" fill="#2C2A25"/>
+<path d="M109.083 110.59H96.5859V123.087H109.083V110.59Z" fill="#2C2A25"/>
+<path d="M121.58 98.0928H109.083V110.59H121.58V98.0928Z" fill="#2C2A25"/>
+<path d="M134.077 110.59H121.58V123.087H134.077V110.59Z" fill="#2C2A25"/>
+<path d="M146.574 98.0928H134.077V110.59H146.574V98.0928Z" fill="#2C2A25"/>
+<path d="M159.071 110.59H146.574V123.087H159.071V110.59Z" fill="#2C2A25"/>
+<path d="M171.567 98.0928H159.07V110.59H171.567V98.0928Z" fill="#2C2A25"/>
+<path d="M184.063 110.59H171.566V123.087H184.063V110.59Z" fill="#2C2A25"/>
+<path d="M196.56 98.0928H184.063V110.59H196.56V98.0928Z" fill="#2C2A25"/>
+<path d="M209.058 110.59H196.561V123.087H209.058V110.59Z" fill="#2C2A25"/>
+<path d="M221.555 98.0928H209.058V110.59H221.555V98.0928Z" fill="#2C2A25"/>
+<path d="M234.052 110.59H221.555V123.087H234.052V110.59Z" fill="#2C2A25"/>
+<path d="M246.549 98.0928H234.052V110.59H246.549V98.0928Z" fill="#2C2A25"/>
+<path d="M259.046 110.59H246.549V123.087H259.046V110.59Z" fill="#2C2A25"/>
+<path d="M9.10834 135.583H-3.38867V148.08H9.10834V135.583Z" fill="#2C2A25"/>
+<path d="M21.6044 123.087H9.10742V135.584H21.6044V123.087Z" fill="#2C2A25"/>
+<path d="M34.1015 135.583H21.6045V148.08H34.1015V135.583Z" fill="#2C2A25"/>
+<path d="M46.5976 123.087H34.1006V135.584H46.5976V123.087Z" fill="#2C2A25"/>
+<path d="M59.0947 135.583H46.5977V148.08H59.0947V135.583Z" fill="#2C2A25"/>
+<path d="M71.5917 123.087H59.0947V135.584H71.5917V123.087Z" fill="#2C2A25"/>
+<path d="M84.0888 135.583H71.5918V148.08H84.0888V135.583Z" fill="#2C2A25"/>
+<path d="M96.5858 123.087H84.0889V135.584H96.5858V123.087Z" fill="#2C2A25"/>
+<path d="M109.083 135.583H96.5859V148.08H109.083V135.583Z" fill="#2C2A25"/>
+<path d="M121.58 123.087H109.083V135.584H121.58V123.087Z" fill="#2C2A25"/>
+<path d="M134.077 135.583H121.58V148.08H134.077V135.583Z" fill="#2C2A25"/>
+<path d="M146.574 123.087H134.077V135.584H146.574V123.087Z" fill="#2C2A25"/>
+<path d="M159.071 135.583H146.574V148.08H159.071V135.583Z" fill="#2C2A25"/>
+<path d="M171.567 123.087H159.07V135.584H171.567V123.087Z" fill="#2C2A25"/>
+<path d="M184.063 135.583H171.566V148.08H184.063V135.583Z" fill="#2C2A25"/>
+<path d="M196.56 123.087H184.063V135.584H196.56V123.087Z" fill="#2C2A25"/>
+<path d="M209.058 135.583H196.561V148.08H209.058V135.583Z" fill="#2C2A25"/>
+<path d="M221.555 123.087H209.058V135.584H221.555V123.087Z" fill="#2C2A25"/>
+<path d="M234.052 135.583H221.555V148.08H234.052V135.583Z" fill="#2C2A25"/>
+<path d="M246.549 123.087H234.052V135.584H246.549V123.087Z" fill="#2C2A25"/>
+<path d="M259.046 135.583H246.549V148.08H259.046V135.583Z" fill="#2C2A25"/>
+<path d="M9.10834 160.577H-3.38867V173.074H9.10834V160.577Z" fill="#2C2A25"/>
+<path d="M21.6044 148.08H9.10742V160.577H21.6044V148.08Z" fill="#2C2A25"/>
+<path d="M34.1015 160.577H21.6045V173.074H34.1015V160.577Z" fill="#2C2A25"/>
+<path d="M46.5976 148.08H34.1006V160.577H46.5976V148.08Z" fill="#2C2A25"/>
+<path d="M59.0947 160.577H46.5977V173.074H59.0947V160.577Z" fill="#2C2A25"/>
+<path d="M71.5917 148.08H59.0947V160.577H71.5917V148.08Z" fill="#2C2A25"/>
+<path d="M84.0888 160.577H71.5918V173.074H84.0888V160.577Z" fill="#2C2A25"/>
+<path d="M96.5858 148.08H84.0889V160.577H96.5858V148.08Z" fill="#2C2A25"/>
+<path d="M109.083 160.577H96.5859V173.074H109.083V160.577Z" fill="#2C2A25"/>
+<path d="M121.58 148.08H109.083V160.577H121.58V148.08Z" fill="#2C2A25"/>
+<path d="M134.077 160.577H121.58V173.074H134.077V160.577Z" fill="#2C2A25"/>
+<path d="M146.574 148.08H134.077V160.577H146.574V148.08Z" fill="#2C2A25"/>
+<path d="M159.071 160.577H146.574V173.074H159.071V160.577Z" fill="#2C2A25"/>
+<path d="M171.567 148.08H159.07V160.577H171.567V148.08Z" fill="#2C2A25"/>
+<path d="M184.063 160.577H171.566V173.074H184.063V160.577Z" fill="#2C2A25"/>
+<path d="M196.56 148.08H184.063V160.577H196.56V148.08Z" fill="#2C2A25"/>
+<path d="M209.058 160.577H196.561V173.074H209.058V160.577Z" fill="#2C2A25"/>
+<path d="M221.555 148.08H209.058V160.577H221.555V148.08Z" fill="#2C2A25"/>
+<path d="M234.052 160.577H221.555V173.074H234.052V160.577Z" fill="#2C2A25"/>
+<path d="M246.549 148.08H234.052V160.577H246.549V148.08Z" fill="#2C2A25"/>
+<path d="M259.046 160.577H246.549V173.074H259.046V160.577Z" fill="#2C2A25"/>
+</g>
+</g>
+<path d="M242.406 26.21H53.6234C48.8074 26.21 44.9033 30.1139 44.9033 34.9299C44.9033 39.7459 48.8074 43.6499 53.6234 43.6499H242.406C247.222 43.6499 251.126 39.7459 251.126 34.9299C251.126 30.1139 247.222 26.21 242.406 26.21Z" fill="#2C2A25"/>
+<path d="M21.5217 9.65878C21.5217 12.2158 19.4486 14.2878 16.8926 14.2878C14.3356 14.2878 12.2637 12.2158 12.2637 9.65878C12.2637 7.10178 14.3356 5.02979 16.8926 5.02979C19.4496 5.02979 21.5217 7.10278 21.5217 9.65878Z" fill="#2C2A25"/>
+<path d="M39.1252 9.65878C39.1252 12.2158 37.0522 14.2878 34.4962 14.2878C31.9402 14.2878 29.8672 12.2158 29.8672 9.65878C29.8672 7.10178 31.9402 5.02979 34.4962 5.02979C37.0522 5.02979 39.1252 7.10278 39.1252 9.65878Z" fill="#2C2A25"/>
+<path d="M56.7267 9.65878C56.7267 12.2158 54.6537 14.2878 52.0977 14.2878C49.5407 14.2878 47.4688 12.2158 47.4688 9.65878C47.4688 7.10178 49.5417 5.02979 52.0977 5.02979C54.6537 5.02979 56.7267 7.10278 56.7267 9.65878Z" fill="#2C2A25"/>
+<path d="M128.47 140.446C144.806 140.446 158.049 127.203 158.049 110.867C158.049 94.5311 144.806 81.2881 128.47 81.2881C112.134 81.2881 98.8906 94.5311 98.8906 110.867C98.8906 127.203 112.134 140.446 128.47 140.446Z" fill="#2C2A25"/>
+<path d="M142.733 110.867L119.913 97.6919V124.042L142.733 110.867Z" fill="#2C2A25"/>
+<path d="M191.463 110.867L175.759 101.801V119.934L191.463 110.867Z" fill="#2C2A25"/>
+<path d="M201.267 101.801H195.891V119.934H201.267V101.801Z" fill="#2C2A25"/>
+<path d="M65.4775 110.867L81.1815 119.934V101.801L65.4775 110.867Z" fill="#2C2A25"/>
+<path d="M61.0508 101.801H55.6748V119.934H61.0508V101.801Z" fill="#2C2A25"/>
+<path d="M181.987 149.307H170.368V219.019L164.559 213.21L158.75 207.401H147.131V219.019L152.94 230.638L158.75 242.257L164.559 248.066L170.368 259.685L164.559 265.494V271.303H222.652V265.494L216.843 259.685L222.652 248.066L228.462 236.447V195.782H222.652L216.843 189.973H205.224L199.415 184.163H187.796L181.987 149.307Z" fill="#2C2A25"/>
+<path d="M176.177 149.307H170.368V155.116H176.177V149.307Z" fill="#2C2A25"/>
+<path d="M164.559 213.21H158.75V219.019H164.559V213.21Z" fill="#2C2A25"/>
+<path d="M158.748 207.401H152.939V213.21H158.748V207.401Z" fill="#2C2A25"/>
+<path d="M152.94 207.401H147.131V213.21H152.94V207.401Z" fill="#2C2A25"/>
+<path d="M181.987 149.307H176.178V155.116H181.987V149.307Z" fill="#2C2A25"/>
+<path d="M193.605 184.163H187.796V189.972H193.605V184.163Z" fill="#2C2A25"/>
+<path d="M199.414 184.163H193.605V189.972H199.414V184.163Z" fill="#2C2A25"/>
+<path d="M211.033 189.973H205.224V195.782H211.033V189.973Z" fill="#2C2A25"/>
+<path d="M228.461 195.782H222.652V201.591H228.461V195.782Z" fill="#2C2A25"/>
+<path d="M216.843 189.973H211.034V195.782H216.843V189.973Z" fill="#2C2A25"/>
+<path d="M170.369 242.257H164.56V248.066H170.369V242.257Z" fill="#2C2A25"/>
+<path d="M176.177 253.875H170.368V259.684H176.177V253.875Z" fill="#2C2A25"/>
+<path d="M181.988 253.875H176.179V259.684H181.988V253.875Z" fill="#2C2A25"/>
+<path d="M187.796 253.875H181.987V259.684H187.796V253.875Z" fill="#2C2A25"/>
+<path d="M193.606 253.875H187.797V259.684H193.606V253.875Z" fill="#2C2A25"/>
+<path d="M199.415 253.875H193.606V259.684H199.415V253.875Z" fill="#2C2A25"/>
+<path d="M216.843 253.875H211.034V259.684H216.843V253.875Z" fill="#2C2A25"/>
+<path d="M211.034 259.685H205.225V265.494H211.034V259.685Z" fill="#2C2A25"/>
+<path d="M222.653 265.494H216.844V271.303H222.653V265.494Z" fill="#2C2A25"/>
+<path d="M216.843 265.494H211.034V271.303H216.843V265.494Z" fill="#2C2A25"/>
+<path d="M211.034 265.494H205.225V271.303H211.034V265.494Z" fill="#2C2A25"/>
+<path d="M205.225 265.494H199.416V271.303H205.225V265.494Z" fill="#2C2A25"/>
+<path d="M199.415 265.494H193.606V271.303H199.415V265.494Z" fill="#2C2A25"/>
+<path d="M193.606 265.494H187.797V271.303H193.606V265.494Z" fill="#2C2A25"/>
+<path d="M187.796 265.494H181.987V271.303H187.796V265.494Z" fill="#2C2A25"/>
+<path d="M181.988 265.494H176.179V271.303H181.988V265.494Z" fill="#2C2A25"/>
+<path d="M176.178 265.494H170.369V271.303H176.178V265.494Z" fill="#2C2A25"/>
+<path d="M170.369 265.494H164.56V271.303H170.369V265.494Z" fill="#2C2A25"/>
+<path d="M222.653 242.257H216.844V248.066H222.653V242.257Z" fill="#2C2A25"/>
+<path d="M176.177 143.498H170.368V149.307H176.177V143.498Z" fill="#F7F4ED"/>
+<path d="M170.369 149.307H164.56V155.116H170.369V149.307Z" fill="#F7F4ED"/>
+<path d="M170.369 160.926H164.56V166.735H170.369V160.926Z" fill="#F7F4ED"/>
+<path d="M170.369 166.735H164.56V172.544H170.369V166.735Z" fill="#F7F4ED"/>
+<path d="M170.369 172.545H164.56V178.354H170.369V172.545Z" fill="#F7F4ED"/>
+<path d="M170.369 178.354H164.56V184.163H170.369V178.354Z" fill="#F7F4ED"/>
+<path d="M170.369 184.163H164.56V189.972H170.369V184.163Z" fill="#F7F4ED"/>
+<path d="M170.369 189.973H164.56V195.782H170.369V189.973Z" fill="#F7F4ED"/>
+<path d="M170.369 195.782H164.56V201.591H170.369V195.782Z" fill="#F7F4ED"/>
+<path d="M170.369 201.591H164.56V207.4H170.369V201.591Z" fill="#F7F4ED"/>
+<path d="M170.369 207.401H164.56V213.21H170.369V207.401Z" fill="#F7F4ED"/>
+<path d="M164.559 207.401H158.75V213.21H164.559V207.401Z" fill="#F7F4ED"/>
+<path d="M158.749 201.591H152.94V207.4H158.749V201.591Z" fill="#F7F4ED"/>
+<path d="M152.94 201.591H147.131V207.4H152.94V201.591Z" fill="#F7F4ED"/>
+<path d="M147.131 201.591H141.322V207.4H147.131V201.591Z" fill="#F7F4ED"/>
+<path d="M147.131 207.401H141.322V213.21H147.131V207.401Z" fill="#F7F4ED"/>
+<path d="M147.131 213.21H141.322V219.019H147.131V213.21Z" fill="#F7F4ED"/>
+<path d="M152.94 219.019H147.131V224.828H152.94V219.019Z" fill="#F7F4ED"/>
+<path d="M152.94 224.828H147.131V230.637H152.94V224.828Z" fill="#F7F4ED"/>
+<path d="M158.749 230.638H152.94V236.447H158.749V230.638Z" fill="#F7F4ED"/>
+<path d="M158.749 236.447H152.94V242.256H158.749V236.447Z" fill="#F7F4ED"/>
+<path d="M164.559 242.257H158.75V248.066H164.559V242.257Z" fill="#F7F4ED"/>
+<path d="M170.369 248.066H164.56V253.875H170.369V248.066Z" fill="#F7F4ED"/>
+<path d="M170.369 253.875H164.56V259.684H170.369V253.875Z" fill="#F7F4ED"/>
+<path d="M176.177 259.685H170.368V265.494H176.177V259.685Z" fill="#F7F4ED"/>
+<path d="M170.369 259.685H164.56V265.494H170.369V259.685Z" fill="#F7F4ED"/>
+<path d="M164.559 259.685H158.75V265.494H164.559V259.685Z" fill="#F7F4ED"/>
+<path d="M164.559 265.494H158.75V271.303H164.559V265.494Z" fill="#F7F4ED"/>
+<path d="M164.559 271.303H158.75V277.112H164.559V271.303Z" fill="#F7F4ED"/>
+<path d="M170.369 271.303H164.56V277.112H170.369V271.303Z" fill="#F7F4ED"/>
+<path d="M176.177 271.303H170.368V277.112H176.177V271.303Z" fill="#F7F4ED"/>
+<path d="M181.988 271.303H176.179V277.112H181.988V271.303Z" fill="#F7F4ED"/>
+<path d="M187.796 271.303H181.987V277.112H187.796V271.303Z" fill="#F7F4ED"/>
+<path d="M193.605 271.303H187.796V277.112H193.605V271.303Z" fill="#F7F4ED"/>
+<path d="M199.415 271.303H193.606V277.112H199.415V271.303Z" fill="#F7F4ED"/>
+<path d="M205.224 271.303H199.415V277.112H205.224V271.303Z" fill="#F7F4ED"/>
+<path d="M211.034 271.303H205.225V277.112H211.034V271.303Z" fill="#F7F4ED"/>
+<path d="M216.843 271.303H211.034V277.112H216.843V271.303Z" fill="#F7F4ED"/>
+<path d="M222.653 271.303H216.844V277.112H222.653V271.303Z" fill="#F7F4ED"/>
+<path d="M228.461 271.303H222.652V277.112H228.461V271.303Z" fill="#F7F4ED"/>
+<path d="M228.461 265.494H222.652V271.303H228.461V265.494Z" fill="#F7F4ED"/>
+<path d="M228.461 259.685H222.652V265.494H228.461V259.685Z" fill="#F7F4ED"/>
+<path d="M222.653 259.685H216.844V265.494H222.653V259.685Z" fill="#F7F4ED"/>
+<path d="M181.988 259.685H176.179V265.494H181.988V259.685Z" fill="#F7F4ED"/>
+<path d="M187.796 259.685H181.987V265.494H187.796V259.685Z" fill="#F7F4ED"/>
+<path d="M193.605 259.685H187.796V265.494H193.605V259.685Z" fill="#F7F4ED"/>
+<path d="M199.415 259.685H193.606V265.494H199.415V259.685Z" fill="#F7F4ED"/>
+<path d="M170.369 213.21H164.56V219.019H170.369V213.21Z" fill="#F7F4ED"/>
+<path d="M170.369 219.019H164.56V224.828H170.369V219.019Z" fill="#F7F4ED"/>
+<path d="M181.988 143.498H176.179V149.307H181.988V143.498Z" fill="#F7F4ED"/>
+<path d="M187.796 149.307H181.987V155.116H187.796V149.307Z" fill="#F7F4ED"/>
+<path d="M187.796 160.926H181.987V166.735H187.796V160.926Z" fill="#F7F4ED"/>
+<path d="M170.369 155.117H164.56V160.926H170.369V155.117Z" fill="#F7F4ED"/>
+<path d="M187.796 155.117H181.987V160.926H187.796V155.117Z" fill="#F7F4ED"/>
+<path d="M187.796 166.735H181.987V172.544H187.796V166.735Z" fill="#F7F4ED"/>
+<path d="M187.796 172.545H181.987V178.354H187.796V172.545Z" fill="#F7F4ED"/>
+<path d="M187.796 178.354H181.987V184.163H187.796V178.354Z" fill="#F7F4ED"/>
+<path d="M187.796 184.163H181.987V189.972H187.796V184.163Z" fill="#F7F4ED"/>
+<path d="M187.796 189.973H181.987V195.782H187.796V189.973Z" fill="#F7F4ED"/>
+<path d="M187.796 195.782H181.987V201.591H187.796V195.782Z" fill="#F7F4ED"/>
+<path d="M187.796 201.591H181.987V207.4H187.796V201.591Z" fill="#F7F4ED"/>
+<path d="M193.605 178.354H187.796V184.163H193.605V178.354Z" fill="#F7F4ED"/>
+<path d="M199.415 178.354H193.606V184.163H199.415V178.354Z" fill="#F7F4ED"/>
+<path d="M205.224 184.163H199.415V189.972H205.224V184.163Z" fill="#F7F4ED"/>
+<path d="M205.224 189.973H199.415V195.782H205.224V189.973Z" fill="#F7F4ED"/>
+<path d="M205.224 195.782H199.415V201.591H205.224V195.782Z" fill="#F7F4ED"/>
+<path d="M205.224 201.591H199.415V207.4H205.224V201.591Z" fill="#F7F4ED"/>
+<path d="M211.034 184.163H205.225V189.972H211.034V184.163Z" fill="#F7F4ED"/>
+<path d="M222.653 189.973H216.844V195.782H222.653V189.973Z" fill="#F7F4ED"/>
+<path d="M222.653 195.782H216.844V201.591H222.653V195.782Z" fill="#F7F4ED"/>
+<path d="M222.653 201.591H216.844V207.4H222.653V201.591Z" fill="#F7F4ED"/>
+<path d="M222.653 207.401H216.844V213.21H222.653V207.401Z" fill="#F7F4ED"/>
+<path d="M228.461 189.973H222.652V195.782H228.461V189.973Z" fill="#F7F4ED"/>
+<path d="M234.271 195.782H228.462V201.591H234.271V195.782Z" fill="#F7F4ED"/>
+<path d="M234.271 201.591H228.462V207.4H234.271V201.591Z" fill="#F7F4ED"/>
+<path d="M234.271 207.401H228.462V213.21H234.271V207.401Z" fill="#F7F4ED"/>
+<path d="M234.271 213.21H228.462V219.019H234.271V213.21Z" fill="#F7F4ED"/>
+<path d="M234.271 219.019H228.462V224.828H234.271V219.019Z" fill="#F7F4ED"/>
+<path d="M234.271 224.828H228.462V230.637H234.271V224.828Z" fill="#F7F4ED"/>
+<path d="M234.271 230.638H228.462V236.447H234.271V230.638Z" fill="#F7F4ED"/>
+<path d="M228.461 236.447H222.652V242.256H228.461V236.447Z" fill="#F7F4ED"/>
+<path d="M228.461 242.257H222.652V248.066H228.461V242.257Z" fill="#F7F4ED"/>
+<path d="M222.653 248.066H216.844V253.875H222.653V248.066Z" fill="#F7F4ED"/>
+<path d="M222.653 253.875H216.844V259.684H222.653V253.875Z" fill="#F7F4ED"/>
+<path d="M216.843 259.685H211.034V265.494H216.843V259.685Z" fill="#F7F4ED"/>
+<path d="M216.843 184.163H211.034V189.972H216.843V184.163Z" fill="#F7F4ED"/>
+</svg>
+        </div>
         <div class="max-w-[80rem] mx-auto">
             <div class="grid lg:grid-cols-[1fr_1.5fr] gap-16 items-center">
                 
@@ -1407,116 +1745,51 @@
     </footer>
 
     <script>
-        document.documentElement.style.overflow = 'hidden';
 
-        // 0. Retro Preloader
+
+        // 0. Image Preloader (Hourglass per image)
         (function() {
-            const preloader = document.getElementById('preloader');
-            const percentEl = document.getElementById('preloader-percent');
-            const barEl = document.getElementById('preloader-bar');
+            const imgs = document.querySelectorAll('img');
+            imgs.forEach(img => {
+                if (img.complete && img.naturalHeight !== 0) return;
 
-            if (!preloader || !percentEl || !barEl) {
-                document.documentElement.style.overflow = '';
-                return;
-            }
+                // Create wrapper inheriting relevant classes
+                const wrapper = document.createElement('div');
+                wrapper.className = 'relative inline-block overflow-hidden ' + Array.from(img.classList).filter(c => c.includes('w-') || c.includes('h-') || c.includes('aspect-') || c.includes('rounded')).join(' ');
+                
+                // Set img to fill wrapper and remove its sizing classes to avoid double-sizing
+                const originalClasses = img.className;
+                img.className = 'w-full h-full object-cover block ' + originalClasses.replace(/\b(w-|h-|aspect-|rounded)\S+/g, '');
+                
+                img.parentNode.insertBefore(wrapper, img);
+                wrapper.appendChild(img);
 
-            const reduceMotion = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            const imgs = Array.from(document.images || []);
-            const total = Math.max(1, imgs.length);
-
-            let doneCount = 0;
-            let targetPct = 0;
-            let shownPct = 0;
-            let rafId = 0;
-            let finished = false;
-            const maxWaitMs = 15000;
-            const startTs = performance.now();
-
-            function setProgress(nextTargetPct) {
-                targetPct = Math.max(targetPct, Math.min(100, Math.round(nextTargetPct)));
-            }
-
-            function markOneDone() {
-                doneCount += 1;
-                setProgress((doneCount / total) * 100);
-            }
-
-            function finish() {
-                if (finished) return;
-                finished = true;
-                setProgress(100);
-                const exitDelay = reduceMotion ? 50 : 180;
-                const removeDelay = reduceMotion ? 120 : 950;
-
-                setTimeout(() => {
-                    preloader.classList.add('is-done');
-                    document.documentElement.style.overflow = '';
-                    setTimeout(() => {
-                        preloader.remove();
-                    }, removeDelay);
-                }, exitDelay);
-            }
-
-            function animate() {
-                const now = performance.now();
-                if (!finished && now - startTs > maxWaitMs) {
-                    finish();
-                }
-
-                const ease = reduceMotion ? 0.35 : 0.14;
-                shownPct += (targetPct - shownPct) * ease;
-                const pctInt = Math.max(0, Math.min(100, Math.round(shownPct)));
-                percentEl.textContent = `${pctInt}%`;
-                barEl.style.width = `${pctInt}%`;
-
-                if (pctInt >= 100 && (finished || doneCount >= total)) {
-                    // Let finish() handle removal
-                }
-
-                rafId = requestAnimationFrame(animate);
-            }
-
-            // Prime progress
-            setProgress(0);
-
-            // Track image loading (load/error both count as done so we never get stuck)
-            imgs.forEach((img) => {
-                if (img.complete) {
-                    markOneDone();
-                    return;
-                }
+                // Create placeholder with Hourglass SVG
+                const loader = document.createElement('div');
+                loader.className = 'absolute inset-0 bg-white z-20 flex items-center justify-center transition-opacity duration-500 border-2 border-ink';
+                if (wrapper.className.includes('rounded')) loader.style.borderRadius = getComputedStyle(wrapper).borderRadius;
+                
+                loader.innerHTML = `
+                    <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="#2C2A25" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="animate-spin text-ink">
+                        <path d="M5 22h14"></path>
+                        <path d="M5 2h14"></path>
+                        <path d="M17 22v-4.172a2 2 0 0 0-.586-1.414L12 12l-4.414 4.414A2 2 0 0 0 7 17.828V22"></path>
+                        <path d="M7 2v4.172a2 2 0 0 0 .586 1.414L12 12l4.414-4.414A2 2 0 0 0 17 6.172V2"></path>
+                    </svg>
+                `;
+                
+                wrapper.appendChild(loader);
 
                 const onDone = () => {
-                    img.removeEventListener('load', onDone);
-                    img.removeEventListener('error', onDone);
-                    markOneDone();
+                    loader.style.opacity = '0';
+                    setTimeout(() => loader.remove(), 500);
                 };
+
                 img.addEventListener('load', onDone, { passive: true });
                 img.addEventListener('error', onDone, { passive: true });
-
                 if (typeof img.decode === 'function') {
                     img.decode().then(onDone).catch(onDone);
                 }
-            });
-
-            // If there are no images (or all already complete)
-            if (doneCount >= total) {
-                finish();
-            }
-
-            rafId = requestAnimationFrame(animate);
-
-            // When all are done, finish
-            const checkDone = setInterval(() => {
-                if (doneCount >= total) {
-                    clearInterval(checkDone);
-                    finish();
-                }
-            }, 50);
-
-            window.addEventListener('beforeunload', () => {
-                if (rafId) cancelAnimationFrame(rafId);
-                clearInterval(checkDone);
             });
         })();
 
@@ -2149,5 +2422,7 @@
     });
 
 </script>
+
+
 </body>
 </html>
